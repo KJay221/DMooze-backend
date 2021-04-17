@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, FastAPI
+from fastapi import APIRouter, FastAPI
 from fastapi.requests import Request
 from fastapi.responses import Response
 from loguru import logger
@@ -14,13 +14,6 @@ APP = FastAPI(
     openapi_url=Config.OPENAPI_URL
 )
 API_ROUTER = APIRouter()
-
-
-# Logs incoming request information
-async def log_request(request: Request):
-    logger.info(f'[{request.client.host}:{request.client.host}] {request.method} {request.url}')
-    logger.info(f'header: {request.headers}, body: ')
-    logger.info(await request.body())
 
 
 # Startup event
@@ -59,4 +52,4 @@ for resource in RESOURCES:
         responses=resource.doc,
     )
 
-APP.include_router(API_ROUTER, dependencies=[Depends(log_request)])
+APP.include_router(API_ROUTER)
