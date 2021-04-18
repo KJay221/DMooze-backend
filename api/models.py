@@ -34,9 +34,11 @@ def init_db():
     pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
     manager_hashed_password = pwd_context.hash(Config.MANAGER_PASSWORD)
 
+    if not SESSION.query(User).filter(User.account == "manager").first():
+        SESSION.merge(User(**{"account": "manager",
+                              "hashed_password": manager_hashed_password,
+                              "money":10000,
+                              "is_platform":True}))
+
     SESSION.merge(Fruit(**{"name": "apple", "count": 1}))
-    SESSION.merge(User(**{"account": "manager",
-                          "hashed_password": manager_hashed_password,
-                          "money":10000,
-                          "is_platform":True}))
     SESSION.commit()

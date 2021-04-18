@@ -1,7 +1,4 @@
 from fastapi import APIRouter, FastAPI
-from fastapi.requests import Request
-from fastapi.responses import Response
-from loguru import logger
 
 from config import Config
 from endpoints import RESOURCES
@@ -20,24 +17,6 @@ API_ROUTER = APIRouter()
 @APP.on_event("startup")
 async def startup_event():
     init_db()
-
-
-# Log response status code and body
-@APP.middleware("http")
-async def log_response(request: Request, call_next):
-    response = await call_next(request)
-    body = b""
-    async for chunk in response.body_iterator:
-        body += chunk
-
-    logger.info(f'{response.status_code} {body}')
-
-    return Response(
-        content=body,
-        status_code=response.status_code,
-        headers=dict(response.headers),
-        media_type=response.media_type
-    )
 
 
 # Add routes from resources
