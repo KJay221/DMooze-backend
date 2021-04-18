@@ -19,7 +19,6 @@ API_ROUTER = APIRouter()
 # Startup event
 @APP.on_event("startup")
 async def startup_event():
-    logger.info("Processing startup initialization")
     init_db()
 
 
@@ -53,3 +52,7 @@ for resource in RESOURCES:
     )
 
 APP.include_router(API_ROUTER)
+
+if __name__ == '__main__':
+    import uvicorn
+    uvicorn.run(APP, host="127.0.0.1", port=8000)

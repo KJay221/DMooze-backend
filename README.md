@@ -37,7 +37,7 @@ pipenv shell
 
 ```
 cd api/
-uvicorn app:APP
+python3 app.py
 ```
 The server will run at http://127.0.0.1:8000
 
