@@ -11,4 +11,4 @@ DOC = {
 
 
 def get():
-    return PlainTextResponse("OK", 200)
+    return PlainTextResponse("O", 200)

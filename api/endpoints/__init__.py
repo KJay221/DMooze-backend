@@ -4,5 +4,6 @@ from endpoints.classes import Resource
 
 from .health import HEALTH
 from .fruit import FRUIT
+from .user import USER
 
-RESOURCES: List[Resource] = HEALTH + FRUIT
+RESOURCES: List[Resource] = HEALTH + FRUIT + USER

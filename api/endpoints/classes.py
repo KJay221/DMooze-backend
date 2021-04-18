@@ -1,4 +1,4 @@
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from typing import Callable
 
 
@@ -11,4 +11,3 @@ class Resource:
     endpoint: Callable
     description: str = "None"
     summary: str = "None"
-    doc: dict = field(default_factory=dict)

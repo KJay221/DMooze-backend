@@ -27,7 +27,6 @@ for resource in RESOURCES:
         description=resource.description,
         summary=resource.summary,
         methods=[resource.method],
-        responses=resource.doc,
     )
 
 APP.include_router(API_ROUTER)
