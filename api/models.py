@@ -1,6 +1,7 @@
 from passlib.context import CryptContext
-from sqlalchemy import BOOLEAN, CHAR, INT, VARCHAR, Column
+from sqlalchemy import BOOLEAN, CHAR, INT, TIME, VARCHAR, Column, ForeignKey
 from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import relationship
 
 from config import Config
 from db import SESSION
@@ -28,6 +29,43 @@ class User(BASE):
     hashed_password = Column(CHAR)
     money = Column(INT)
     is_platform = Column(BOOLEAN, default=False)
+    children = relationship("Item")
+
+
+class Item(BASE):
+
+    __tablename__ = "item"
+
+    id = Column(INT, primary_key=True)
+    owner_id = Column(INT, ForeignKey('user.id'), nullable=False)
+    target_price = Column(INT, nullable=False)
+    project_content = Column(CHAR)
+    start_time = Column(TIME, nullable=False)
+    end_time = Column(TIME, nullable=False)
+    project_name = Column(CHAR)
+    representative = Column(CHAR)
+    email = Column(CHAR)
+    phone = Column(CHAR)
+
+
+class DonateRecord(BASE):
+
+    __tablename__ = "donate_record"
+
+    id = Column(INT, primary_key=True)
+    project_id = Column(INT, ForeignKey('item.id'), nullable=False)
+    donor_id = Column(INT, ForeignKey('user.id'), nullable=False)
+    money = Column(INT)
+
+
+class UseRecord(BASE):
+
+    __tablename__ = "use_record"
+
+    id = Column(INT, primary_key=True)
+    project_id = Column(INT, ForeignKey('item.id'), nullable=False)
+    money = Column(INT)
+    purpose = Column(CHAR)
 
 
 def init_db():
