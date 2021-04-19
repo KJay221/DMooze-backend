@@ -20,6 +20,8 @@ requests = "==2.25.1"
 importlib-metadata = "==1.7.0"
 passlib = "*"
 pydantic = "*"
+jwt = "*"
+pyjwt = "*"
 
 [requires]
 python_version = "3.7"
