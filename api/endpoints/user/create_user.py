@@ -10,27 +10,21 @@ from .model import UserBase
 
 def create_user(create_user_input: UserBase):
     try:
-        if (
-            not SESSION.query(User)
-            .filter(User.account == create_user_input.account)
-            .first()
-        ):
-            pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
-            hashed_password = pwd_context.hash(create_user_input.password)
-            SESSION.add(
-                User(
-                    **{
-                        "account": create_user_input.account,
-                        "hashed_password": hashed_password,
-                        "money": 1000,
-                        "is_platform": False,
-                    }
-                )
+        pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+        hashed_password = pwd_context.hash(create_user_input.password)
+        SESSION.add(
+            User(
+                **{
+                    "account": create_user_input.account,
+                    "hashed_password": hashed_password,
+                    "money": 1000,
+                    "is_platform": False,
+                }
             )
-            SESSION.commit()
-            return PlainTextResponse("OK", 200)
-        return PlainTextResponse("User already exist", 400)
+        )
+        SESSION.commit()
+        return PlainTextResponse("OK", 200)
     except Exception as error:
         SESSION.rollback()
         logger.error(error)
-        return PlainTextResponse("Bad Request", 400)
+        return PlainTextResponse("Bad Request or User already exist", 400)

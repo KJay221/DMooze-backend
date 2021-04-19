@@ -6,7 +6,7 @@ from fastapi.testclient import TestClient
 
 from app import APP
 from db import SESSION
-from models import Fruit
+from models import Fruit, User
 
 
 CLIENT = TestClient(APP)
@@ -70,3 +70,4 @@ def assert_request(
 
 def clean_db():
     SESSION.query(Fruit).delete()
+    SESSION.query(User).delete()
