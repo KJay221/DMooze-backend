@@ -16,8 +16,8 @@ CREATE TABLE IF NOT EXISTS item(
     owner_id INTEGER NOT null,
     target_price INTEGER NOT null,
     project_content CHAR(1000),
-    start_time TIME NOT NULL,
-    end_time TIME NOT NULL,
+    start_time TIMESTAMPTZ NOT NULL,
+    end_time TIMESTAMPTZ NOT NULL,
     project_name CHAR(100),
     representative CHAR(20),
     email CHAR(50),
@@ -41,3 +41,5 @@ CREATE TABLE IF NOT EXISTS use_record(
     purpose CHAR(100),
     FOREIGN KEY(project_id) REFERENCES item(id)
 );
+
+SET timezone = 'Asia/Taipei';

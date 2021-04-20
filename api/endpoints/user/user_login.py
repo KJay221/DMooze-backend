@@ -29,3 +29,9 @@ def user_login(user_login_input: UserBase):
     except Exception as error:
         logger.error(error)
         return PlainTextResponse("Bad Request", 400)
+
+
+def confirm_token(token: str):
+    payload = jwt.decode(token, SECRET_KEY, algorithms="HS256")
+    db_user = SESSION.query(User).filter(User.account == payload.get("account")).first()
+    return db_user

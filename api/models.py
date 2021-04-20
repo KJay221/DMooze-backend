@@ -29,7 +29,8 @@ class User(BASE):
     hashed_password = Column(CHAR)
     money = Column(INT)
     is_platform = Column(BOOLEAN, default=False)
-    children = relationship("Item")
+    children_item = relationship("Item")
+    children_donate_record = relationship("DonateRecord")
 
 
 class Item(BASE):
@@ -46,6 +47,8 @@ class Item(BASE):
     representative = Column(CHAR)
     email = Column(CHAR)
     phone = Column(CHAR)
+    children_donate_record = relationship("DonateRecord")
+    children_use_record = relationship("UseRecord")
 
 
 class DonateRecord(BASE):

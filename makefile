@@ -38,3 +38,4 @@ clean:
 	rm -rf .tox
 	rm -f report.xml
 	rm -f coverage.xml
+	rm -f .coverage
