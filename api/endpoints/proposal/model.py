@@ -3,9 +3,10 @@ from datetime import datetime
 from pydantic import BaseModel
 
 
-class ItemCreate(BaseModel):
+class ProposalCreate(BaseModel):
+    owner_addr: str
     target_price: int
-    project_content: str
+    project_description: str
     start_time: datetime
     end_time: datetime
     project_name: str
