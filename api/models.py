@@ -3,7 +3,6 @@ from sqlalchemy import BOOLEAN, CHAR, INT, TIME, VARCHAR, Column, ForeignKey
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 
-from config import Config
 from db import SESSION
 
 BASE = declarative_base()
@@ -73,7 +72,7 @@ class UseRecord(BASE):
 
 def init_db():
     pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
-    manager_hashed_password = pwd_context.hash(Config.MANAGER_PASSWORD)
+    manager_hashed_password = pwd_context.hash("sss")
 
     if not SESSION.query(User).filter(User.account == "manager").first():
         SESSION.merge(User(**{"account": "manager",

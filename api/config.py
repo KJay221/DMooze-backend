@@ -12,4 +12,5 @@ class Config:
         'DB_URL', 'postgresql://postgres:password@localhost:5432/database'
     )
 
-    MANAGER_PASSWORD = os.environ.get('MANAGER_PASSWORD', 'password')
+    HOST = os.environ.get('HOST', '0.0.0.0')
+    PORT = int(os.environ.get('PORT', '8000'))
