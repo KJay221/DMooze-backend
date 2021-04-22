@@ -27,4 +27,4 @@ def create_proposal(create_proposal_input: ProposalCreate):
         return PlainTextResponse("successfully create", 200)
     except Exception as error:
         logger.error(error)
-        return PlainTextResponse("Bad Request or token is invalid", 400)
+        return PlainTextResponse("Bad Request(check input data size and type)", 400)
