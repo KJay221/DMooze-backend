@@ -2,7 +2,7 @@ from fastapi.responses import PlainTextResponse
 from loguru import logger
 
 from db import SESSION
-from models import Proposal
+from models import ImageList, Proposal
 
 from .model import ProposalCreate
 
@@ -22,8 +22,16 @@ def create_proposal(create_proposal_input: ProposalCreate):
                 "phone": create_proposal_input.phone,
             }
         )
+
         SESSION.add(new_proposal)
         SESSION.commit()
+        SESSION.refresh(new_proposal)
+        for image_url in create_proposal_input.img_url:
+            new_img_url = ImageList(
+                **{"image_url": image_url, "proposal_id": new_proposal.id}
+            )
+            SESSION.add(new_img_url)
+            SESSION.commit()
         return PlainTextResponse("successfully create", 200)
     except Exception as error:
         logger.error(error)

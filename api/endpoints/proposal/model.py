@@ -1,4 +1,5 @@
 from datetime import datetime
+from typing import List
 
 from pydantic import BaseModel
 
@@ -13,6 +14,7 @@ class ProposalCreate(BaseModel):
     representative: str
     email: str
     phone: str
+    img_url: List[str]
 
 
 class DBProposal(BaseModel):
@@ -26,3 +28,17 @@ class DBProposal(BaseModel):
     representative: str
     email: str
     phone: str
+
+
+class ProposalReturn(BaseModel):
+    id: int
+    owner_addr: str
+    target_price: int
+    project_description: str
+    start_time: datetime
+    end_time: datetime
+    project_name: str
+    representative: str
+    email: str
+    phone: str
+    img_url: List[str]
