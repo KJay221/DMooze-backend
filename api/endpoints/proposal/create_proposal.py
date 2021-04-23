@@ -27,4 +27,5 @@ def create_proposal(create_proposal_input: ProposalCreate):
         return PlainTextResponse("successfully create", 200)
     except Exception as error:
         logger.error(error)
+        SESSION.rollback()
         return PlainTextResponse("Bad Request(check input data size and type)", 400)
