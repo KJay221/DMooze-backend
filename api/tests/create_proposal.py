@@ -89,6 +89,8 @@ POST_OUTPUT = {
 }
 
 clean_db()
+
+
 @pytest.mark.parametrize("test_type", POST_INPUT.keys())
 def test_post(test_type):
     init_db()

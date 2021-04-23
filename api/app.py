@@ -1,4 +1,5 @@
 from fastapi import APIRouter, FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
 from config import Config
 from endpoints import RESOURCES
@@ -17,6 +18,14 @@ API_ROUTER = APIRouter()
 @APP.on_event("startup")
 async def startup_event():
     init_db()
+
+APP.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 # Add routes from resources
