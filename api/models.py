@@ -9,7 +9,7 @@ class Proposal(BASE):
 
     __tablename__ = "proposal"
 
-    id = Column(INT, primary_key=True)
+    proposal_addr = Column(CHAR, nullable=False, primary_key=True)
     owner_addr = Column(CHAR, nullable=False)
     target_price = Column(INT, nullable=False)
     project_description = Column(CHAR)
@@ -28,7 +28,7 @@ class ImageList(BASE):
 
     id = Column(INT, primary_key=True)
     image_url = Column(CHAR)
-    proposal_id = Column(INT, ForeignKey('proposal.id'), nullable=False)
+    proposal_addr = Column(CHAR, ForeignKey('proposal.proposal_addr'), nullable=False)
 
 
 def init_db():

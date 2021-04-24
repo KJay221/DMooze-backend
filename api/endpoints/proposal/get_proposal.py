@@ -7,14 +7,16 @@ from models import ImageList, Proposal
 from .model import DBProposal, ProposalReturn
 
 
-def get_proposal(proposal_id: int):
+def get_proposal(proposal_addr: str = ""):
     try:
         db_proposal: DBProposal = (
-            SESSION.query(Proposal).filter(Proposal.id == proposal_id).first()
+            SESSION.query(Proposal)
+            .filter(Proposal.proposal_addr == proposal_addr)
+            .first()
         )
         proposal_return = ProposalReturn(
             **{
-                "id": db_proposal.id,
+                "proposal_addr": db_proposal.proposal_addr,
                 "owner_addr": db_proposal.owner_addr.replace(" ", ""),
                 "target_price": db_proposal.target_price,
                 "project_description": db_proposal.project_description.replace(" ", ""),
@@ -29,7 +31,7 @@ def get_proposal(proposal_id: int):
         )
         db_url = (
             SESSION.query(ImageList)
-            .filter(ImageList.proposal_id == db_proposal.id)
+            .filter(ImageList.proposal_addr == db_proposal.proposal_addr)
             .all()
         )
         for item in db_url:
@@ -37,4 +39,4 @@ def get_proposal(proposal_id: int):
         return proposal_return
     except Exception as error:
         logger.error(error)
-        return PlainTextResponse("Bad Request or id is wrong", 400)
+        return PlainTextResponse("Bad Request or proposal_addr is wrong", 400)

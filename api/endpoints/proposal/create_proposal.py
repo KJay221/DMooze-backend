@@ -11,6 +11,7 @@ def create_proposal(create_proposal_input: ProposalCreate):
     try:
         new_proposal = Proposal(
             **{
+                "proposal_addr": create_proposal_input.proposal_addr,
                 "owner_addr": create_proposal_input.owner_addr,
                 "target_price": create_proposal_input.target_price,
                 "project_description": create_proposal_input.project_description,
@@ -28,7 +29,7 @@ def create_proposal(create_proposal_input: ProposalCreate):
         SESSION.refresh(new_proposal)
         for image_url in create_proposal_input.img_url:
             new_img_url = ImageList(
-                **{"image_url": image_url, "proposal_id": new_proposal.id}
+                **{"image_url": image_url, "proposal_addr": new_proposal.proposal_addr}
             )
             SESSION.add(new_img_url)
             SESSION.commit()

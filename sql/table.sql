@@ -1,7 +1,7 @@
 CREATE TABLE IF NOT EXISTS proposal(
-    id SERIAL PRIMARY KEY,
-    owner_addr CHAR(64) NOT null,
-    target_price INTEGER NOT null,
+    proposal_addr CHAR(42) NOT NULL PRIMARY KEY,
+    owner_addr CHAR(42) NOT NULL,
+    target_price INTEGER NOT NULL,
     project_description CHAR(1000),
     start_time TIMESTAMP NOT NULL,
     end_time TIMESTAMP NOT NULL,
@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS proposal(
 
 CREATE TABLE IF NOT EXISTS image_list(
     id SERIAL PRIMARY KEY,
-    proposal_id INTEGER NOT null,
+    proposal_addr CHAR(42) NOT NULL,
     image_url CHAR(200),
-    FOREIGN KEY(proposal_id) REFERENCES proposal(id)
+    FOREIGN KEY(proposal_addr) REFERENCES proposal(proposal_addr)
 );
