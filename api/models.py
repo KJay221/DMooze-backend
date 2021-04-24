@@ -31,5 +31,14 @@ class ImageList(BASE):
     proposal_addr = Column(CHAR, ForeignKey('proposal.proposal_addr'), nullable=False)
 
 
+class MoneyList(BASE):
+
+    __tablename__ = "money_list"
+
+    id = Column(INT, primary_key=True)
+    money = Column(INT, nullable=False)
+    proposal_addr = Column(CHAR, ForeignKey('proposal.proposal_addr'), nullable=False)
+
+
 def init_db():
     pass

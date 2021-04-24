@@ -17,3 +17,10 @@ CREATE TABLE IF NOT EXISTS image_list(
     image_url CHAR(200),
     FOREIGN KEY(proposal_addr) REFERENCES proposal(proposal_addr)
 );
+
+CREATE TABLE IF NOT EXISTS money_list(
+    id SERIAL PRIMARY KEY,
+    proposal_addr CHAR(42) NOT NULL,
+    money INTEGER NOT NULL,
+    FOREIGN KEY(proposal_addr) REFERENCES proposal(proposal_addr)
+);

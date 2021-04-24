@@ -23,7 +23,6 @@ def create_proposal(create_proposal_input: ProposalCreate):
                 "phone": create_proposal_input.phone,
             }
         )
-
         SESSION.add(new_proposal)
         SESSION.commit()
         SESSION.refresh(new_proposal)
