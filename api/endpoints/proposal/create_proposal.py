@@ -9,8 +9,14 @@ from .model import ProposalCreate
 
 def create_proposal(create_proposal_input: ProposalCreate):
     try:
+        last_id = SESSION.query(Proposal).order_by(Proposal.id.desc()).first()
+        if not last_id:
+            last_id = 1
+        else:
+            last_id = last_id.id + 1
         new_proposal = Proposal(
             **{
+                "id": last_id,
                 "proposal_addr": create_proposal_input.proposal_addr,
                 "owner_addr": create_proposal_input.owner_addr,
                 "target_price": create_proposal_input.target_price,

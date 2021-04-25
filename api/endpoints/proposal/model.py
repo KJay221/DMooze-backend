@@ -43,3 +43,11 @@ class ProposalReturn(BaseModel):
     email: str
     phone: str
     img_url: List[str]
+
+
+class ProposalItem(BaseModel):
+    project_name: str
+    representative: str
+    img_url: str
+    target_price: int
+    current_price: int

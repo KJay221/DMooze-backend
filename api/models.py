@@ -9,8 +9,8 @@ class Proposal(BASE):
 
     __tablename__ = "proposal"
 
-    id = Column(INT, primary_key=True)
-    proposal_addr = Column(CHAR, nullable=False, unique=True)
+    id = Column(INT, unique=True)
+    proposal_addr = Column(CHAR, nullable=False, primary_key=True)
     owner_addr = Column(CHAR, nullable=False)
     target_price = Column(INT, nullable=False)
     project_description = Column(CHAR)
