@@ -22,7 +22,6 @@ def create_proposal(create_proposal_input: ProposalCreate):
                 "target_price": create_proposal_input.target_price,
                 "project_description": create_proposal_input.project_description,
                 "start_time": create_proposal_input.start_time,
-                "end_time": create_proposal_input.end_time,
                 "project_name": create_proposal_input.project_name,
                 "representative": create_proposal_input.representative,
                 "email": create_proposal_input.email,

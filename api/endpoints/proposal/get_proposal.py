@@ -1,3 +1,5 @@
+from datetime import datetime, timedelta
+
 from fastapi.responses import PlainTextResponse
 from loguru import logger
 
@@ -24,7 +26,6 @@ def get_proposal(proposal_addr: str = "", page: int = -1):
                         " ", ""
                     ),
                     "start_time": db_proposal.start_time,
-                    "end_time": db_proposal.end_time,
                     "project_name": db_proposal.project_name.replace(" ", ""),
                     "representative": db_proposal.representative.replace(" ", ""),
                     "email": db_proposal.email.replace(" ", ""),
@@ -69,6 +70,9 @@ def get_proposal(proposal_addr: str = "", page: int = -1):
                     .image_url.replace(" ", ""),
                     "target_price": db_proposal.target_price,
                     "current_price": current_price,
+                    "left_time": str(
+                        timedelta(30) - (datetime.now() - db_proposal.start_time)
+                    ),
                 }
             )
             proposal_list.append(proposal_item)

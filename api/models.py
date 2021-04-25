@@ -15,7 +15,6 @@ class Proposal(BASE):
     target_price = Column(INT, nullable=False)
     project_description = Column(CHAR)
     start_time = Column(TIME, nullable=False)
-    end_time = Column(TIME, nullable=False)
     project_name = Column(CHAR)
     representative = Column(CHAR)
     email = Column(CHAR)

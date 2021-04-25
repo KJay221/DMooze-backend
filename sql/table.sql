@@ -5,7 +5,6 @@ CREATE TABLE IF NOT EXISTS proposal(
     target_price INTEGER NOT NULL,
     project_description CHAR(1000),
     start_time TIMESTAMP NOT NULL,
-    end_time TIMESTAMP NOT NULL,
     project_name CHAR(100),
     representative CHAR(20),
     email CHAR(50),

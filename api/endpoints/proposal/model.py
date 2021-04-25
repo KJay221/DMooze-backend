@@ -10,7 +10,6 @@ class ProposalCreate(BaseModel):
     target_price: int
     project_description: str
     start_time: datetime
-    end_time: datetime
     project_name: str
     representative: str
     email: str
@@ -24,7 +23,6 @@ class DBProposal(BaseModel):
     target_price: int
     project_description: str
     start_time: datetime
-    end_time: datetime
     project_name: str
     representative: str
     email: str
@@ -37,7 +35,6 @@ class ProposalReturn(BaseModel):
     target_price: int
     project_description: str
     start_time: datetime
-    end_time: datetime
     project_name: str
     representative: str
     email: str
@@ -51,3 +48,4 @@ class ProposalItem(BaseModel):
     img_url: str
     target_price: int
     current_price: int
+    left_time: str
