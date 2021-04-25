@@ -1,6 +1,7 @@
 from endpoints.classes import Resource
 
 from .create_proposal import create_proposal
+from .get_page_number import get_page_number
 from .get_proposal import get_proposal
 
 PROPOSAL = [
@@ -17,5 +18,12 @@ PROPOSAL = [
         get_proposal,
         "Used for get proposal by ID",
         "Get proposal",
+    ),
+    Resource(
+        "GET",
+        "/proposal/get_page_number",
+        get_page_number,
+        "Used for get page number",
+        "Get page number",
     ),
 ]

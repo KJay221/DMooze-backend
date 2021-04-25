@@ -1,5 +1,6 @@
 CREATE TABLE IF NOT EXISTS proposal(
-    proposal_addr CHAR(42) NOT NULL PRIMARY KEY,
+    id SERIAL PRIMARY KEY,
+    proposal_addr CHAR(42) NOT NULL UNIQUE,
     owner_addr CHAR(42) NOT NULL,
     target_price INTEGER NOT NULL,
     project_description CHAR(1000),

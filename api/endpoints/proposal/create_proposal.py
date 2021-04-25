@@ -36,4 +36,6 @@ def create_proposal(create_proposal_input: ProposalCreate):
     except Exception as error:
         logger.error(error)
         SESSION.rollback()
-        return PlainTextResponse("Bad Request(check input data size and type)", 400)
+        return PlainTextResponse(
+            "Bad Request(check input data size and type or addr already exists)", 400
+        )
