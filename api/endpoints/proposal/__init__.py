@@ -1,12 +1,20 @@
 from endpoints.classes import Resource
 
 from .create_proposal import create_proposal
+from .get_id import get_id
 from .get_page_number import get_page_number
 from .get_proposal import get_proposal
 
 PROPOSAL = [
     Resource(
         "POST",
+        "/proposal/get_id",
+        get_id,
+        "Used for get id",
+        "Get id",
+    ),
+    Resource(
+        "PUT",
         "/proposal/create_proposal",
         create_proposal,
         "Used for create proposal",

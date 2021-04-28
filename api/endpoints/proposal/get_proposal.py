@@ -20,7 +20,7 @@ def get_proposal_item(db_proposal: DBProposal):
         current_price += money_item.money
     proposal_item = ProposalItem(
         **{
-            "proposal_id": db_proposal.proposal_id.replace(" ", ""),
+            "proposal_id": db_proposal.proposal_id,
             "owner_addr": db_proposal.owner_addr.replace(" ", ""),
             "target_price": db_proposal.target_price,
             "current_price": current_price,

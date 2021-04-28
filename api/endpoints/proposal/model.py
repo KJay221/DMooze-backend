@@ -5,19 +5,19 @@ from pydantic import BaseModel
 
 
 class ProposalCreate(BaseModel):
-    owner_addr: str
-    target_price: int
-    project_description: str
-    start_time: datetime
-    project_name: str
-    representative: str
-    email: str
-    phone: str
-    img_url: List[str]
+    owner_addr: str = ""
+    target_price: int = 0
+    project_description: str = ""
+    start_time: datetime = datetime.now()
+    project_name: str = ""
+    representative: str = ""
+    email: str = ""
+    phone: str = ""
+    img_url: List[str] = []
 
 
 class DBProposal(BaseModel):
-    proposal_addr: str
+    proposal_id: int
     owner_addr: str
     target_price: int
     project_description: str
@@ -29,7 +29,7 @@ class DBProposal(BaseModel):
 
 
 class ProposalItem(BaseModel):
-    proposal_addr: str
+    proposal_id: int
     owner_addr: str
     target_price: int
     current_price: int
