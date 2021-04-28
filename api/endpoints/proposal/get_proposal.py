@@ -12,7 +12,7 @@ from .model import DBProposal, ProposalItem
 def get_proposal_item(db_proposal: DBProposal):
     money_record = (
         SESSION.query(MoneyList)
-        .filter(MoneyList.proposal_addr == db_proposal.proposal_addr)
+        .filter(MoneyList.proposal_id == db_proposal.proposal_id)
         .all()
     )
     current_price = 0
@@ -20,7 +20,7 @@ def get_proposal_item(db_proposal: DBProposal):
         current_price += money_item.money
     proposal_item = ProposalItem(
         **{
-            "proposal_addr": db_proposal.proposal_addr.replace(" ", ""),
+            "proposal_id": db_proposal.proposal_id.replace(" ", ""),
             "owner_addr": db_proposal.owner_addr.replace(" ", ""),
             "target_price": db_proposal.target_price,
             "current_price": current_price,
@@ -36,7 +36,7 @@ def get_proposal_item(db_proposal: DBProposal):
     )
     db_img_list = (
         SESSION.query(ImageList)
-        .filter(ImageList.proposal_addr == db_proposal.proposal_addr)
+        .filter(ImageList.proposal_id == db_proposal.proposal_id)
         .all()
     )
     for img_item in db_img_list:
@@ -44,12 +44,12 @@ def get_proposal_item(db_proposal: DBProposal):
     return proposal_item
 
 
-def get_proposal(proposal_addr: str = "", page: int = -1):
+def get_proposal(proposal_id: int = -1, page: int = -1):
     try:
         if page == -1:
             db_proposal = (
                 SESSION.query(Proposal)
-                .filter(Proposal.proposal_addr == proposal_addr)
+                .filter(Proposal.proposal_id == proposal_id)
                 .first()
             )
             return get_proposal_item(db_proposal)
@@ -62,11 +62,13 @@ def get_proposal(proposal_addr: str = "", page: int = -1):
         proposal_list = []
         for i in range(display_number):
             db_proposal = (
-                SESSION.query(Proposal).filter(Proposal.id == row_number + i).first()
+                SESSION.query(Proposal)
+                .filter(Proposal.proposal_id == row_number + i)
+                .first()
             )
             proposal_list.append(get_proposal_item(db_proposal))
         proposal_list.reverse()
         return proposal_list
     except Exception as error:
         logger.error(error)
-        return PlainTextResponse("Bad Request or proposal_addr is wrong", 400)
+        return PlainTextResponse("Bad Request or proposal_id is wrong", 400)

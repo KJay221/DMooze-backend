@@ -5,7 +5,6 @@ from pydantic import BaseModel
 
 
 class ProposalCreate(BaseModel):
-    proposal_addr: str
     owner_addr: str
     target_price: int
     project_description: str

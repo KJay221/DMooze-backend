@@ -9,8 +9,7 @@ class Proposal(BASE):
 
     __tablename__ = "proposal"
 
-    id = Column(INT, unique=True)
-    proposal_addr = Column(CHAR, nullable=False, primary_key=True)
+    proposal_id = Column(INT, primary_key=True)
     owner_addr = Column(CHAR, nullable=False)
     target_price = Column(INT, nullable=False)
     project_description = Column(CHAR)
@@ -28,7 +27,7 @@ class ImageList(BASE):
 
     id = Column(INT, primary_key=True)
     image_url = Column(CHAR)
-    proposal_addr = Column(CHAR, ForeignKey('proposal.proposal_addr'), nullable=False)
+    proposal_id = Column(INT, ForeignKey('proposal.proposal_id'), nullable=False)
 
 
 class MoneyList(BASE):
@@ -37,7 +36,7 @@ class MoneyList(BASE):
 
     id = Column(INT, primary_key=True)
     money = Column(INT, nullable=False)
-    proposal_addr = Column(CHAR, ForeignKey('proposal.proposal_addr'), nullable=False)
+    proposal_id = Column(INT, ForeignKey('proposal.proposal_id'), nullable=False)
 
 
 def init_db():

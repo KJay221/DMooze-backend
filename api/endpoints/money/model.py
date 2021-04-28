@@ -3,7 +3,7 @@ from pydantic import BaseModel
 
 class MoneyRecord(BaseModel):
     money: int
-    proposal_addr: str
+    proposal_id: int
 
 
 class RecordReturn(BaseModel):

@@ -12,7 +12,7 @@ def add_record(add_record_input: MoneyRecord):
         new_money_record = MoneyList(
             **{
                 "money": add_record_input.money,
-                "proposal_addr": add_record_input.proposal_addr,
+                "proposal_id": add_record_input.proposal_id,
             }
         )
         SESSION.add(new_money_record)
@@ -21,4 +21,4 @@ def add_record(add_record_input: MoneyRecord):
     except Exception as error:
         logger.error(error)
         SESSION.rollback()
-        return PlainTextResponse("Bad Request or proposal_addr isn't existed", 400)
+        return PlainTextResponse("Bad Request or proposal_id isn't existed", 400)

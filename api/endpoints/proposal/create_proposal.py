@@ -9,15 +9,14 @@ from .model import ProposalCreate
 
 def create_proposal(create_proposal_input: ProposalCreate):
     try:
-        last_id = SESSION.query(Proposal).order_by(Proposal.id.desc()).first()
+        last_id = SESSION.query(Proposal).order_by(Proposal.proposal_id.desc()).first()
         if not last_id:
             last_id = 1
         else:
-            last_id = last_id.id + 1
+            last_id = last_id.proposal_id + 1
         new_proposal = Proposal(
             **{
-                "id": last_id,
-                "proposal_addr": create_proposal_input.proposal_addr,
+                "proposal_id": last_id,
                 "owner_addr": create_proposal_input.owner_addr,
                 "target_price": create_proposal_input.target_price,
                 "project_description": create_proposal_input.project_description,
@@ -33,7 +32,7 @@ def create_proposal(create_proposal_input: ProposalCreate):
         SESSION.refresh(new_proposal)
         for image_url in create_proposal_input.img_url:
             new_img_url = ImageList(
-                **{"image_url": image_url, "proposal_addr": new_proposal.proposal_addr}
+                **{"image_url": image_url, "proposal_id": new_proposal.proposal_id}
             )
             SESSION.add(new_img_url)
             SESSION.commit()

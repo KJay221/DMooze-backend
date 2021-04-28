@@ -1,6 +1,5 @@
 CREATE TABLE IF NOT EXISTS proposal(
-    id INTEGER UNIQUE,
-    proposal_addr CHAR(42) NOT NULL PRIMARY KEY,
+    proposal_id INTEGER PRIMARY KEY,
     owner_addr CHAR(42) NOT NULL,
     target_price INTEGER NOT NULL,
     project_description CHAR(1000),
@@ -13,14 +12,14 @@ CREATE TABLE IF NOT EXISTS proposal(
 
 CREATE TABLE IF NOT EXISTS image_list(
     id SERIAL PRIMARY KEY,
-    proposal_addr CHAR(42) NOT NULL,
+    proposal_id INTEGER NOT NULL,
     image_url CHAR(200),
-    FOREIGN KEY(proposal_addr) REFERENCES proposal(proposal_addr)
+    FOREIGN KEY(proposal_id) REFERENCES proposal(proposal_id)
 );
 
 CREATE TABLE IF NOT EXISTS money_list(
     id SERIAL PRIMARY KEY,
-    proposal_addr CHAR(42) NOT NULL,
+    proposal_id INTEGER NOT NULL,
     money INTEGER NOT NULL,
-    FOREIGN KEY(proposal_addr) REFERENCES proposal(proposal_addr)
+    FOREIGN KEY(proposal_id) REFERENCES proposal(proposal_id)
 );
