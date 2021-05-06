@@ -1,12 +1,12 @@
 from endpoints.classes import Resource
 
-from .add_record import add_record
+from .post import post
 
 MONEY = [
     Resource(
         "POST",
         "/money",
-        add_record,
+        post,
         "Used for add new money record",
         "Add money record",
     ),

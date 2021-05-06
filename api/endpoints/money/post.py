@@ -7,7 +7,7 @@ from models import MoneyList
 from .model import MoneyRecord
 
 
-def add_record(add_record_input: MoneyRecord):
+def post(add_record_input: MoneyRecord):
     try:
         new_money_record = MoneyList(
             **{
