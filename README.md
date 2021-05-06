@@ -1,8 +1,6 @@
-# FastAPI template
-A RESTful API service template built with fastapi.
+# DMooze-backend
 
-![Integration](https://github.com/DarkbordermanTemplate/fastapi-sqlalchemy/workflows/Integration/badge.svg)
-![Build](https://github.com/DarkbordermanTemplate/fastapi-sqlalchemy/workflows/Build/badge.svg)
+Use template from [FastAPI template](https://github.com/DarkbordermanTemplate/fastapi-sqlalchemy)
 
 ## Development
 
@@ -86,7 +84,3 @@ The service is deployed with `docker-compose`.
 ```
 docker-compose up
 ```
-
-## Contribution
-
-* Darkborderman/Divik(reastw1234@gmail.com)
