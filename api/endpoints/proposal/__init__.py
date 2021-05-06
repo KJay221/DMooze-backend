@@ -1,37 +1,29 @@
 from endpoints.classes import Resource
 
-from .create_proposal import create_proposal
-from .get_id import get_id
-from .get_page_number import get_page_number
-from .get_proposal import get_proposal
+from .get import get
+from .post import post
+from .put import put
 
 PROPOSAL = [
     Resource(
         "POST",
-        "/proposal/get_id",
-        get_id,
-        "Used for get id",
-        "Get id",
+        "/proposal",
+        post,
+        "Used for create id",
+        "Create id and return id",
     ),
     Resource(
         "PUT",
-        "/proposal/create_proposal",
-        create_proposal,
-        "Used for create proposal",
-        "Create proposal",
+        "/proposal",
+        put,
+        "Used for update proposal info",
+        "Update proposal info",
     ),
     Resource(
         "GET",
-        "/proposal/get_proposal",
-        get_proposal,
-        "Used for get proposal by ID",
-        "Get proposal",
-    ),
-    Resource(
-        "GET",
-        "/proposal/get_page_number",
-        get_page_number,
-        "Used for get page number",
-        "Get page number",
+        "/proposal",
+        get,
+        "Used for get proposal info",
+        "Get proposal info",
     ),
 ]

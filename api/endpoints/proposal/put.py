@@ -1,3 +1,5 @@
+from typing import Optional
+
 from fastapi.responses import PlainTextResponse
 from loguru import logger
 
@@ -7,8 +9,8 @@ from models import ImageList, Proposal
 from .model import ProposalCreate
 
 
-def create_proposal(
-    create_proposal_input: ProposalCreate, success: bool, proposal_id: int
+def put(
+    create_proposal_input: Optional[ProposalCreate], success: bool, proposal_id: int
 ):
     try:
         db_proposal = (

@@ -7,7 +7,7 @@ from db import SESSION
 from models import Proposal
 
 
-def get_id():
+def post():
     try:
         last_id = SESSION.query(Proposal).order_by(Proposal.proposal_id.desc()).first()
         if not last_id:
