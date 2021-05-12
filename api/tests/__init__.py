@@ -8,7 +8,6 @@ from app import APP
 from db import SESSION
 from models import Proposal
 
-
 CLIENT = TestClient(APP)
 
 

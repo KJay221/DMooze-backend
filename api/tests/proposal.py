@@ -1,7 +1,7 @@
 import pytest
 
-from tests import AssertRequest, AssertResponse, assert_request, clean_db
 from models import init_db
+from tests import AssertRequest, AssertResponse, assert_request, clean_db
 
 ROUTE = "/proposal/create_proposal"
 

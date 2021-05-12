@@ -1,0 +1,35 @@
+{
+    "proposal":
+    [
+        {
+            "owner_addr" : "owner_addr",
+            "target_price" : 0,
+            "project_description" : "project_description",
+            "start_time" : "2021-05-06T13:58:08",
+            "project_name" : "project_name",
+            "representative" : "representative",
+            "email" : "email",
+            "phone" : "phone",
+            "image_url": [
+                "aaa",
+                "bbb"
+            ],
+            "money": [123,467]
+        },
+        {
+            "owner_addr" : "owner_addr",
+            "target_price" : 0,
+            "project_description" : "project_description",
+            "start_time" : "2021-05-06T13:58:08",
+            "project_name" : "project_name",
+            "representative" : "representative",
+            "email" : "email",
+            "phone" : "phone",
+            "image_url": [
+                "ccc",
+                "ddd"
+            ],
+            "money": [13,467]
+        }    
+    ]
+}

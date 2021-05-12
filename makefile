@@ -17,10 +17,12 @@ reformat: black isort
 black:
 	pipenv run black api/endpoints/
 	pipenv run black api/tests/
+	pipenv run black api
 
 isort:
 	pipenv run isort api/*.py
 	pipenv run isort api/endpoints/**/*.py
+	pipenv run isort api/tests/*.py
 
 ci-bundle: reformat lint test
 

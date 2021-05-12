@@ -9,7 +9,7 @@ APP = FastAPI(
     version=Config.VERSION,
     title=Config.APP_TITLE,
     description=Config.APP_DESCRIPTION,
-    openapi_url=Config.OPENAPI_URL
+    openapi_url=Config.OPENAPI_URL,
 )
 API_ROUTER = APIRouter()
 
@@ -18,6 +18,7 @@ API_ROUTER = APIRouter()
 @APP.on_event("startup")
 async def startup_event():
     init_db()
+
 
 APP.add_middleware(
     CORSMiddleware,
@@ -40,6 +41,7 @@ for resource in RESOURCES:
 
 APP.include_router(API_ROUTER)
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     import uvicorn
+
     uvicorn.run(APP, host=Config.HOST, port=Config.PORT)
