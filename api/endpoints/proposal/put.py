@@ -25,8 +25,17 @@ def put(create_proposal_input: ProposalCreate, success: bool, proposal_id: int):
             db_proposal.phone = create_proposal_input.phone
             SESSION.commit()
             for image_url in create_proposal_input.img_url:
+                last_id = SESSION.query(ImageList).order_by(ImageList.id.desc()).first()
+                if not last_id:
+                    last_id = 1
+                else:
+                    last_id = last_id.id + 1
                 new_img_url = ImageList(
-                    **{"image_url": image_url, "proposal_id": db_proposal.proposal_id}
+                    **{
+                        "id": last_id,
+                        "image_url": image_url,
+                        "proposal_id": db_proposal.proposal_id,
+                    }
                 )
                 SESSION.add(new_img_url)
                 SESSION.commit()
