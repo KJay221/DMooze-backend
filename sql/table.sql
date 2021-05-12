@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS proposal(
 CREATE TABLE IF NOT EXISTS image_list(
     id SERIAL PRIMARY KEY,
     proposal_id INTEGER NOT NULL,
-    image_url CHAR(200),
+    image_url CHAR(400),
     FOREIGN KEY(proposal_id) REFERENCES proposal(proposal_id)
 );
 

@@ -21,7 +21,6 @@ def get(useage: str, proposal_id: Optional[int] = None, page: Optional[int] = No
 def method_get_proposal(proposal_id: int = None, page: int = None):
     try:
         if not page:
-            print(proposal_id)
             db_proposal = (
                 SESSION.query(Proposal)
                 .filter(Proposal.proposal_id == proposal_id)
