@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from fastapi.responses import PlainTextResponse
 from loguru import logger
 
@@ -16,7 +18,7 @@ def put(create_proposal_input: ProposalCreate, success: bool, proposal_id: int):
             db_proposal.owner_addr = create_proposal_input.owner_addr
             db_proposal.target_price = create_proposal_input.target_price
             db_proposal.project_description = create_proposal_input.project_description
-            db_proposal.start_time = create_proposal_input.start_time
+            db_proposal.start_time = datetime.now()
             db_proposal.project_name = create_proposal_input.project_name
             db_proposal.representative = create_proposal_input.representative
             db_proposal.email = create_proposal_input.email

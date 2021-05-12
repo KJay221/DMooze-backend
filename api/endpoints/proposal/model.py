@@ -8,7 +8,6 @@ class ProposalCreate(BaseModel):
     owner_addr: str = ""
     target_price: int = 0
     project_description: str = ""
-    start_time: datetime = datetime.now()
     project_name: str = ""
     representative: str = ""
     email: str = ""

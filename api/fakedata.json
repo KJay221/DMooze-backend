@@ -1,35 +1,66 @@
-{
-    "proposal":
-    [
-        {
-            "owner_addr" : "owner_addr",
-            "target_price" : 0,
-            "project_description" : "project_description",
-            "start_time" : "2021-05-06T13:58:08",
-            "project_name" : "project_name",
-            "representative" : "representative",
-            "email" : "email",
-            "phone" : "phone",
-            "image_url": [
-                "aaa",
-                "bbb"
-            ],
-            "money": [123,467]
-        },
-        {
-            "owner_addr" : "owner_addr",
-            "target_price" : 0,
-            "project_description" : "project_description",
-            "start_time" : "2021-05-06T13:58:08",
-            "project_name" : "project_name",
-            "representative" : "representative",
-            "email" : "email",
-            "phone" : "phone",
-            "image_url": [
-                "ccc",
-                "ddd"
-            ],
-            "money": [13,467]
-        }    
-    ]
-}
+[
+    {
+        "done": false,
+        "owner_addr" : "0xDC25EF3F5E8699B8A158338A2ADA83795FBA2D69",
+        "target_price" : 1000,
+        "project_description" : "這是2020資訊週",
+        "start_time" : "2020-11-04T08:00:00",
+        "project_name" : "2020 成大資訊週《奇怪的資勢增加了》",
+        "representative" : "112總召",
+        "email" : "csieweek2020@gmail.com",
+        "phone" : "0923463782",
+        "image_url": [
+            "aaa",
+            "bbb"
+        ],
+        "money": [200,200]
+    },
+    {
+        "done": false,
+        "owner_addr" : "owner_addr",
+        "target_price" : 0,
+        "project_description" : "project_description",
+        "start_time" : "2021-05-06T13:58:08",
+        "project_name" : "project_name",
+        "representative" : "representative",
+        "email" : "email",
+        "phone" : "phone",
+        "image_url": [
+            "ccc",
+            "ddd"
+        ],
+        "money": [13,467]
+    },
+    {
+        "done": false,
+        "owner_addr" : "owner_addr",
+        "target_price" : 0,
+        "project_description" : "project_description",
+        "start_time" : "2021-05-06T13:58:08",
+        "project_name" : "project_name",
+        "representative" : "representative",
+        "email" : "email",
+        "phone" : "phone",
+        "image_url": [
+            "ccc",
+            "ddd"
+        ],
+        "money": [13,467]
+    },
+    {
+        "done": false,
+        "owner_addr" : "owner_addr",
+        "target_price" : 0,
+        "project_description" : "project_description",
+        "start_time" : "2021-05-06T13:58:08",
+        "project_name" : "project_name",
+        "representative" : "representative",
+        "email" : "email",
+        "phone" : "phone",
+        "image_url": [
+            "ccc",
+            "ddd"
+        ],
+        "money": [13,467]
+    }
+]
