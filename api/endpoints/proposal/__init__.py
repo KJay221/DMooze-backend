@@ -1,5 +1,6 @@
 from endpoints.classes import Resource
 
+from .delete import delete
 from .get import get
 from .post import post
 from .put import put
@@ -25,5 +26,12 @@ PROPOSAL = [
         get,
         "Used for get proposal info",
         "Get proposal info",
+    ),
+    Resource(
+        "DELETE",
+        "/proposal",
+        delete,
+        "Used for delete proposal id",
+        "Delete proposal id",
     ),
 ]

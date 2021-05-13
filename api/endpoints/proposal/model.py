@@ -12,7 +12,6 @@ class ProposalCreate(BaseModel):
     representative: str = ""
     email: str = ""
     phone: str = ""
-    img_url: List[str] = []
 
 
 class DBProposal(BaseModel):

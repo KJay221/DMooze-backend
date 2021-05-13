@@ -17,3 +17,5 @@ class Config:
     PORT = int(os.environ.get("PORT", "8000"))
 
     FAKE_DATA_INSERT = os.environ.get("FAKE_DATA_INSERT", "false")
+
+    IMGUR_CLIENT_ID = os.environ.get("IMGUR_CLIENT_ID", "NO_ID")
