@@ -4,5 +4,6 @@ from endpoints.classes import Resource
 
 from .proposal import PROPOSAL
 from .money import MONEY
+from .image_list import IMAGE
 
-RESOURCES: List[Resource] = PROPOSAL + MONEY
+RESOURCES: List[Resource] = PROPOSAL + MONEY + IMAGE
