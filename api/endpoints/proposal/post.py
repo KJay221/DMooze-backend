@@ -1,5 +1,6 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 
+import pytz
 from fastapi.responses import PlainTextResponse
 from loguru import logger
 
@@ -20,7 +21,7 @@ def post():
                 "owner_addr": "",
                 "target_price": 0,
                 "project_description": "",
-                "start_time": datetime.now(),
+                "start_time": datetime.now(pytz.utc) + timedelta(hours=8),
                 "project_name": "",
                 "representative": "",
                 "email": "",
