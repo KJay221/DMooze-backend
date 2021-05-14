@@ -10,12 +10,12 @@ from models import ImageList, MoneyList, Proposal
 from .model import DBProposal, ProposalItem
 
 
-def get(useage: str, proposal_id: Optional[int] = None, page: Optional[int] = None):
-    if useage == "get_proposal":
+def get(usage: str, proposal_id: Optional[int] = None, page: Optional[int] = None):
+    if usage == "get_proposal":
         return method_get_proposal(proposal_id=proposal_id, page=page)
-    if useage == "get_page_number":
+    if usage == "get_page_number":
         return get_page_number()
-    return PlainTextResponse("Bad Request Wrong useage", 400)
+    return PlainTextResponse("Bad Request Wrong usage", 400)
 
 
 def method_get_proposal(proposal_id: int = None, page: int = None):
