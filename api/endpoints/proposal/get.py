@@ -1,6 +1,7 @@
 from datetime import datetime, timedelta
 from typing import Optional
 
+import pytz
 from fastapi.responses import PlainTextResponse
 from loguru import logger
 
@@ -67,6 +68,26 @@ def get_proposal_item(db_proposal: DBProposal):
     current_price = 0
     for money_item in money_record:
         current_price += money_item.money
+
+    # time compute
+    now = datetime.now(pytz.utc) + timedelta(hours=8)
+    now_time = datetime(now.year, now.month, now.day, now.hour, now.minute, now.second)
+    endtime_time = db_proposal.start_time + timedelta(seconds=60)
+    left_time = (endtime_time - now_time).days
+    time_type = "days"
+    if left_time < 0:
+        left_time = "expired"
+        time_type = ""
+    if left_time == 0:
+        left_time = (endtime_time - now_time).seconds // 3600
+        time_type = "hours"
+    if left_time == 0:
+        left_time = (endtime_time - now_time).seconds // 60
+        time_type = "minutes"
+    if left_time == 0:
+        left_time = (endtime_time - now_time).seconds
+        time_type = "seconds"
+
     proposal_item = ProposalItem(
         **{
             "proposal_id": db_proposal.proposal_id,
@@ -75,7 +96,7 @@ def get_proposal_item(db_proposal: DBProposal):
             "current_price": current_price,
             "project_description": db_proposal.project_description.replace(" ", ""),
             "start_time": db_proposal.start_time,
-            "left_time": str(timedelta(30) - (datetime.now() - db_proposal.start_time)),
+            "left_time": str(left_time) + time_type,
             "project_name": db_proposal.project_name.replace(" ", ""),
             "representative": db_proposal.representative.replace(" ", ""),
             "email": db_proposal.email.replace(" ", ""),
