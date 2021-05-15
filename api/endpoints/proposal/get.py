@@ -72,7 +72,7 @@ def get_proposal_item(db_proposal: DBProposal):
     # time compute
     now = datetime.now(pytz.utc) + timedelta(hours=8)
     now_time = datetime(now.year, now.month, now.day, now.hour, now.minute, now.second)
-    endtime_time = db_proposal.start_time + timedelta(seconds=60)
+    endtime_time = db_proposal.start_time + timedelta(days=30)
     left_time = (endtime_time - now_time).days
     time_type = "days"
     if left_time < 0:
