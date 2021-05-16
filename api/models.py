@@ -91,7 +91,7 @@ def init_db():
                 )
                 SESSION.merge(fake_imagelist)
                 SESSION.commit()
-            for j in range(len(proposal_object["money"])):
+            for j in range(len(proposal_object["money_input"])):
                 last_id = SESSION.query(MoneyList).order_by(MoneyList.id.desc()).first()
                 if not last_id:
                     last_id = 1
@@ -100,9 +100,28 @@ def init_db():
                 fake_moneylist = MoneyList(
                     **{
                         "id": last_id,
-                        "money": proposal_object["money"][j],
+                        "money": proposal_object["money_input"][j],
                         "proposal_id": i + 1,
+                        "sponsor_addr": proposal_object["sponsor_addr"][j],
+                        "transaction_hash": proposal_object["transaction_hash_input"][j],
                     }
                 )
                 SESSION.merge(fake_moneylist)
+                SESSION.commit()
+            for j in range(len(proposal_object["money_output"])):
+                last_id = SESSION.query(WithdrawalList).order_by(WithdrawalList.id.desc()).first()
+                if not last_id:
+                    last_id = 1
+                else:
+                    last_id = last_id.id + 1
+                fake_withdrawal_list = WithdrawalList(
+                    **{
+                        "id": last_id,
+                        "money": proposal_object["money_output"][j],
+                        "proposal_id": i + 1,
+                        "use_description": proposal_object["use_description"][j],
+                        "transaction_hash": proposal_object["transaction_hash_output"][j],
+                    }
+                )
+                SESSION.merge(fake_withdrawal_list)
                 SESSION.commit()
