@@ -21,5 +21,7 @@ CREATE TABLE IF NOT EXISTS money_list(
     id SERIAL PRIMARY KEY,
     proposal_id INTEGER NOT NULL,
     money INTEGER NOT NULL,
+    sponsor_addr CHAR(42) NOT NULL,
+    transaction_hash CHAR(66) NOT NULL,
     FOREIGN KEY(proposal_id) REFERENCES proposal(proposal_id)
 );

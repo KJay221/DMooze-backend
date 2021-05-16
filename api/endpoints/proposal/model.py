@@ -39,3 +39,6 @@ class ProposalItem(BaseModel):
     email: str
     phone: str
     img_url: List[str]
+    money: List[int]
+    sponsor_addr: List[str]
+    transaction_hash: List[str]

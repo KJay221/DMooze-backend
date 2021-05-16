@@ -41,6 +41,8 @@ class MoneyList(BASE):
 
     id = Column(INT, primary_key=True)
     money = Column(INT, nullable=False)
+    sponsor_addr = Column(CHAR, nullable=False)
+    transaction_hash = Column(CHAR, nullable=False)
     proposal_id = Column(INT, ForeignKey("proposal.proposal_id"), nullable=False)
 
 

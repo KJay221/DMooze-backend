@@ -19,6 +19,8 @@ def post(add_record_input: MoneyRecord):
                 "id": last_id,
                 "money": add_record_input.money,
                 "proposal_id": add_record_input.proposal_id,
+                "sponsor_addr": add_record_input.sponsor_addr,
+                "transaction_hash": add_record_input.transaction_hash,
             }
         )
         SESSION.add(new_money_record)

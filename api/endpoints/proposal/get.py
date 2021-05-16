@@ -74,19 +74,19 @@ def get_proposal_item(db_proposal: DBProposal):
     now_time = datetime(now.year, now.month, now.day, now.hour, now.minute, now.second)
     endtime_time = db_proposal.start_time + timedelta(days=30)
     left_time = (endtime_time - now_time).days
-    time_type = "days"
+    time_type = " 天"
     if left_time < 0:
         left_time = "expired"
         time_type = ""
     if left_time == 0:
         left_time = (endtime_time - now_time).seconds // 3600
-        time_type = "hours"
+        time_type = " 小時"
     if left_time == 0:
         left_time = (endtime_time - now_time).seconds // 60
-        time_type = "minutes"
+        time_type = " 分鐘"
     if left_time == 0:
         left_time = (endtime_time - now_time).seconds
-        time_type = "seconds"
+        time_type = " 秒"
 
     proposal_item = ProposalItem(
         **{
@@ -102,13 +102,27 @@ def get_proposal_item(db_proposal: DBProposal):
             "email": db_proposal.email.replace(" ", ""),
             "phone": db_proposal.phone.replace(" ", ""),
             "img_url": [],
+            "money": [],
+            "sponsor_addr": [],
+            "transaction_hash": [],
         }
     )
-    db_img_list = (
+    db_data_list = (
         SESSION.query(ImageList)
         .filter(ImageList.proposal_id == db_proposal.proposal_id)
         .all()
     )
-    for img_item in db_img_list:
-        proposal_item.img_url.append(img_item.image_url.replace(" ", ""))
+    for data_item in db_data_list:
+        proposal_item.img_url.append(data_item.image_url.replace(" ", ""))
+    db_data_list = (
+        SESSION.query(MoneyList)
+        .filter(MoneyList.proposal_id == db_proposal.proposal_id)
+        .all()
+    )
+    for data_item in db_data_list:
+        proposal_item.money.append(data_item.money)
+        proposal_item.sponsor_addr.append(data_item.sponsor_addr.replace(" ", ""))
+        proposal_item.transaction_hash.append(
+            data_item.transaction_hash.replace(" ", "")
+        )
     return proposal_item
