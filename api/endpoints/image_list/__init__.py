@@ -1,12 +1,12 @@
 from endpoints.classes import Resource
 
-from .put import put
+from .post import post
 
 IMAGE = [
     Resource(
-        "PUT",
+        "POST",
         "/image",
-        put,
+        post,
         "Used for upload image",
         "Upload image",
     ),

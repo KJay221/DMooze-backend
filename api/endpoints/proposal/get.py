@@ -6,7 +6,7 @@ from fastapi.responses import PlainTextResponse
 from loguru import logger
 
 from db import SESSION
-from models import ImageList, MoneyList, Proposal
+from models import ImageList, MoneyList, Proposal, WithdrawalList
 
 from .model import DBProposal, ProposalItem
 
@@ -102,9 +102,12 @@ def get_proposal_item(db_proposal: DBProposal):
             "email": db_proposal.email.replace(" ", ""),
             "phone": db_proposal.phone.replace(" ", ""),
             "img_url": [],
-            "money": [],
+            "money_input": [],
             "sponsor_addr": [],
-            "transaction_hash": [],
+            "transaction_hash_input": [],
+            "money_output": [],
+            "use_description": [],
+            "transaction_hash_output": [],
         }
     )
     db_data_list = (
@@ -120,9 +123,20 @@ def get_proposal_item(db_proposal: DBProposal):
         .all()
     )
     for data_item in db_data_list:
-        proposal_item.money.append(data_item.money)
+        proposal_item.money_input.append(data_item.money)
         proposal_item.sponsor_addr.append(data_item.sponsor_addr.replace(" ", ""))
-        proposal_item.transaction_hash.append(
+        proposal_item.transaction_hash_input.append(
+            data_item.transaction_hash.replace(" ", "")
+        )
+    db_data_list = (
+        SESSION.query(WithdrawalList)
+        .filter(WithdrawalList.proposal_id == db_proposal.proposal_id)
+        .all()
+    )
+    for data_item in db_data_list:
+        proposal_item.money_output.append(data_item.money)
+        proposal_item.use_description.append(data_item.use_description.replace(" ", ""))
+        proposal_item.transaction_hash_output.append(
             data_item.transaction_hash.replace(" ", "")
         )
     return proposal_item

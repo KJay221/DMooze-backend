@@ -12,7 +12,7 @@ from db import SESSION
 from models import ImageList, Proposal
 
 
-async def put(
+async def post(
     proposal_id: int,
     image_files: List[UploadFile] = File(...),
 ):

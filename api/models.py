@@ -17,12 +17,12 @@ class Proposal(BASE):
     proposal_id = Column(INT, primary_key=True)
     owner_addr = Column(CHAR, nullable=False)
     target_price = Column(INT, nullable=False)
-    project_description = Column(CHAR)
+    project_description = Column(CHAR, nullable=False)
     start_time = Column(TIME, nullable=False)
-    project_name = Column(CHAR)
-    representative = Column(CHAR)
-    email = Column(CHAR)
-    phone = Column(CHAR)
+    project_name = Column(CHAR, nullable=False)
+    representative = Column(CHAR, nullable=False)
+    email = Column(CHAR, nullable=False)
+    phone = Column(CHAR, nullable=False)
     children_image_list = relationship("ImageList")
 
 
@@ -31,7 +31,7 @@ class ImageList(BASE):
     __tablename__ = "image_list"
 
     id = Column(INT, primary_key=True)
-    image_url = Column(CHAR)
+    image_url = Column(CHAR, nullable=False)
     proposal_id = Column(INT, ForeignKey("proposal.proposal_id"), nullable=False)
 
 
@@ -42,6 +42,17 @@ class MoneyList(BASE):
     id = Column(INT, primary_key=True)
     money = Column(INT, nullable=False)
     sponsor_addr = Column(CHAR, nullable=False)
+    transaction_hash = Column(CHAR, nullable=False)
+    proposal_id = Column(INT, ForeignKey("proposal.proposal_id"), nullable=False)
+
+
+class WithdrawalList(BASE):
+
+    __tablename__ = "withdrawal_list"
+
+    id = Column(INT, primary_key=True)
+    money = Column(INT, nullable=False)
+    use_description = Column(CHAR, nullable=False)
     transaction_hash = Column(CHAR, nullable=False)
     proposal_id = Column(INT, ForeignKey("proposal.proposal_id"), nullable=False)
 

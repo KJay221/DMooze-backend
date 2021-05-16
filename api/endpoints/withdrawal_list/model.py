@@ -1,8 +1,8 @@
 from pydantic import BaseModel
 
 
-class MoneyRecord(BaseModel):
+class WithdrawalRecord(BaseModel):
     money: int
     proposal_id: int
-    sponsor_addr: str
+    use_description: str
     transaction_hash: str
