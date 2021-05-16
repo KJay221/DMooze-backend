@@ -28,17 +28,17 @@ def method_get_proposal(proposal_id: int = None, page: int = None):
                 .first()
             )
             return get_proposal_item(db_proposal)
-        row_number = SESSION.query(Proposal).count()
-        row_number = row_number - page * 9 + 1
-        display_number = 9
-        if row_number < 0:
-            display_number = row_number + 8
-            row_number = 1
+        first_element_number = SESSION.query(Proposal).count() - (page - 1) * 9
+        last_element_number = first_element_number - 9
+        if last_element_number < 0:
+            last_element_number = 0
         proposal_list = []
-        for i in range(display_number):
+        for element in enumerate(
+            SESSION.query(Proposal)[last_element_number:first_element_number]
+        ):
             db_proposal = (
                 SESSION.query(Proposal)
-                .filter(Proposal.proposal_id == row_number + i)
+                .filter(Proposal.proposal_id == element[1].proposal_id)
                 .first()
             )
             proposal_list.append(get_proposal_item(db_proposal))
