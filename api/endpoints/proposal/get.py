@@ -11,11 +11,18 @@ from models import ImageList, MoneyList, Proposal, WithdrawalList
 from .model import DBProposal, ProposalItem
 
 
-def get(usage: str, proposal_id: Optional[int] = None, page: Optional[int] = None):
+def get(
+    usage: str,
+    proposal_id: Optional[int] = None,
+    page: Optional[int] = None,
+    owner_addr: Optional[str] = None,
+):
     if usage == "get_proposal":
         return method_get_proposal(proposal_id=proposal_id, page=page)
     if usage == "get_page_number":
         return get_page_number()
+    if usage == "get_owner_proposal":
+        return get_owner_proposal(owner_addr=owner_addr)
     return PlainTextResponse("Bad Request Wrong usage", 400)
 
 
@@ -54,6 +61,27 @@ def get_page_number():
         row_number = SESSION.query(Proposal).count()
         page_number = row_number // 9 + 1
         return PlainTextResponse(str(page_number), 200)
+    except Exception as error:
+        logger.error(error)
+        return PlainTextResponse("Bad Request", 400)
+
+
+def get_owner_proposal(owner_addr: str):
+    try:
+        proposal_list = []
+        for element in enumerate(
+            SESSION.query(Proposal)
+            .filter(Proposal.owner_addr == owner_addr)
+            .order_by(Proposal.start_time.desc())
+            .all()
+        ):
+            db_proposal = (
+                SESSION.query(Proposal)
+                .filter(Proposal.proposal_id == element[1].proposal_id)
+                .first()
+            )
+            proposal_list.append(get_proposal_item(db_proposal))
+        return proposal_list
     except Exception as error:
         logger.error(error)
         return PlainTextResponse("Bad Request", 400)
