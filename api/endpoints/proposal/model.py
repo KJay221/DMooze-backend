@@ -12,6 +12,7 @@ class ProposalCreate(BaseModel):
     representative: str = ""
     email: str = ""
     phone: str = ""
+    create_hash: str = ""
 
 
 class DBProposal(BaseModel):
@@ -24,6 +25,7 @@ class DBProposal(BaseModel):
     representative: str
     email: str
     phone: str
+    create_hash: str
 
 
 class ProposalItem(BaseModel):
@@ -38,6 +40,7 @@ class ProposalItem(BaseModel):
     representative: str
     email: str
     phone: str
+    create_hash: str
     img_url: List[str]
     money_input: List[int]
     sponsor_addr: List[str]

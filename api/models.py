@@ -23,6 +23,7 @@ class Proposal(BASE):
     representative = Column(CHAR, nullable=False)
     email = Column(CHAR, nullable=False)
     phone = Column(CHAR, nullable=False)
+    create_hash = Column(CHAR, nullable=False)
     children_image_list = relationship("ImageList")
 
 

@@ -26,6 +26,7 @@ def post():
                 "representative": "",
                 "email": "",
                 "phone": "",
+                "create_hash": "",
             }
         )
         SESSION.add(new_proposal)

@@ -101,6 +101,7 @@ def get_proposal_item(db_proposal: DBProposal):
             "representative": db_proposal.representative.replace(" ", ""),
             "email": db_proposal.email.replace(" ", ""),
             "phone": db_proposal.phone.replace(" ", ""),
+            "create_hash": db_proposal.create_hash.replace(" ", ""),
             "img_url": [],
             "money_input": [],
             "sponsor_addr": [],

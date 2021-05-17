@@ -23,6 +23,7 @@ async def put(create_proposal_input: ProposalCreate, proposal_id: int):
         db_proposal.representative = create_proposal_input.representative
         db_proposal.email = create_proposal_input.email
         db_proposal.phone = create_proposal_input.phone
+        db_proposal.create_hash = create_proposal_input.create_hash
         SESSION.commit()
         return PlainTextResponse("successfully create and update info", 200)
     except Exception as error:

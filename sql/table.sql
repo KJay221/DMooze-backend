@@ -7,7 +7,8 @@ CREATE TABLE IF NOT EXISTS proposal(
     project_name CHAR(100) NOT NULL,
     representative CHAR(20) NOT NULL,
     email CHAR(50) NOT NULL,
-    phone CHAR(20) NOT NULL
+    phone CHAR(20) NOT NULL,
+    create_hash CHAR(66) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS image_list(
