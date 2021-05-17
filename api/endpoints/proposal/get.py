@@ -16,17 +16,20 @@ def get(
     proposal_id: Optional[int] = None,
     page: Optional[int] = None,
     owner_addr: Optional[str] = None,
+    expired: Optional[bool] = None,
 ):
     if usage == "get_proposal":
-        return method_get_proposal(proposal_id=proposal_id, page=page)
+        return method_get_proposal(proposal_id=proposal_id, page=page, expired=expired)
     if usage == "get_page_number":
-        return get_page_number()
+        return get_page_number(expired=expired)
     if usage == "get_owner_proposal":
         return get_owner_proposal(owner_addr=owner_addr)
     return PlainTextResponse("Bad Request Wrong usage", 400)
 
 
-def method_get_proposal(proposal_id: int = None, page: int = None):
+def method_get_proposal(
+    proposal_id: int = None, page: int = None, expired: bool = None
+):
     try:
         if not page:
             db_proposal = (
@@ -35,13 +38,26 @@ def method_get_proposal(proposal_id: int = None, page: int = None):
                 .first()
             )
             return get_proposal_item(db_proposal)
-        first_element_number = SESSION.query(Proposal).count() - (page - 1) * 9
+        db_proposal_list = None
+        if expired:
+            db_proposal_list = (
+                SESSION.query(Proposal)
+                .filter(Proposal.start_time < now_time() - timedelta(days=30))
+                .all()
+            )
+        else:
+            db_proposal_list = (
+                SESSION.query(Proposal)
+                .filter(Proposal.start_time > now_time() - timedelta(days=30))
+                .all()
+            )
+        first_element_number = len(db_proposal_list) - (page - 1) * 9
         last_element_number = first_element_number - 9
         if last_element_number < 0:
             last_element_number = 0
         proposal_list = []
         for element in enumerate(
-            SESSION.query(Proposal)[last_element_number:first_element_number]
+            db_proposal_list[last_element_number:first_element_number]
         ):
             db_proposal = (
                 SESSION.query(Proposal)
@@ -56,11 +72,23 @@ def method_get_proposal(proposal_id: int = None, page: int = None):
         return PlainTextResponse("Bad Request or proposal_id is wrong", 400)
 
 
-def get_page_number():
+def get_page_number(expired: bool):
     try:
-        row_number = SESSION.query(Proposal).count()
-        page_number = row_number // 9 + 1
-        return PlainTextResponse(str(page_number), 200)
+        if expired:
+            number_of_proposal = (
+                SESSION.query(Proposal)
+                .filter(Proposal.start_time < now_time() - timedelta(days=30))
+                .count()
+            )
+            page_number = (number_of_proposal - 1) // 9 + 1
+            return page_number
+        number_of_proposal = (
+            SESSION.query(Proposal)
+            .filter(Proposal.start_time > now_time() - timedelta(days=30))
+            .count()
+        )
+        page_number = (number_of_proposal - 1) // 9 + 1
+        return page_number
     except Exception as error:
         logger.error(error)
         return PlainTextResponse("Bad Request", 400)
@@ -98,22 +126,20 @@ def get_proposal_item(db_proposal: DBProposal):
         current_price += money_item.money
 
     # time compute
-    now = datetime.now(pytz.utc) + timedelta(hours=8)
-    now_time = datetime(now.year, now.month, now.day, now.hour, now.minute, now.second)
     endtime_time = db_proposal.start_time + timedelta(days=30)
-    left_time = (endtime_time - now_time).days
+    left_time = (endtime_time - now_time()).days
     time_type = " 天"
     if left_time < 0:
         left_time = "expired"
         time_type = ""
     if left_time == 0:
-        left_time = (endtime_time - now_time).seconds // 3600
+        left_time = (endtime_time - now_time()).seconds // 3600
         time_type = " 小時"
     if left_time == 0:
-        left_time = (endtime_time - now_time).seconds // 60
+        left_time = (endtime_time - now_time()).seconds // 60
         time_type = " 分鐘"
     if left_time == 0:
-        left_time = (endtime_time - now_time).seconds
+        left_time = (endtime_time - now_time()).seconds
         time_type = " 秒"
     proposal_item = ProposalItem(
         **{
@@ -176,17 +202,22 @@ def get_proposal_item(db_proposal: DBProposal):
     return proposal_item
 
 
+# time before
 def count_time(start_time: datetime):
-    now = datetime.now(pytz.utc) + timedelta(hours=8)
-    now_time = datetime(now.year, now.month, now.day, now.hour, now.minute, now.second)
-    left_time = (now_time - start_time).days
+    left_time = (now_time() - start_time).days
     time_type = "天前"
     if left_time == 0:
-        left_time = (now_time - start_time).seconds // 3600
+        left_time = (now_time() - start_time).seconds // 3600
         time_type = "小時前"
     if left_time == 0:
-        left_time = (now_time - start_time).seconds // 60
+        left_time = (now_time() - start_time).seconds // 60
         time_type = "分鐘前"
     if left_time == 0:
         return "剛剛"
     return str(left_time) + time_type
+
+
+# get tw now time
+def now_time():
+    now = datetime.now(pytz.utc) + timedelta(hours=8)
+    return datetime(now.year, now.month, now.day, now.hour, now.minute, now.second)
