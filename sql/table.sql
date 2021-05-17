@@ -23,6 +23,7 @@ CREATE TABLE IF NOT EXISTS money_list(
     money INTEGER NOT NULL,
     sponsor_addr CHAR(42) NOT NULL,
     transaction_hash CHAR(66) NOT NULL,
+    input_time TIMESTAMP NOT NULL,
     FOREIGN KEY(proposal_id) REFERENCES proposal(proposal_id)
 );
 
@@ -32,5 +33,6 @@ CREATE TABLE IF NOT EXISTS withdrawal_list(
     money INTEGER NOT NULL,
     use_description CHAR(1000) NOT NULL,
     transaction_hash CHAR(66) NOT NULL,
+    output_time TIMESTAMP NOT NULL,
     FOREIGN KEY(proposal_id) REFERENCES proposal(proposal_id)
 );

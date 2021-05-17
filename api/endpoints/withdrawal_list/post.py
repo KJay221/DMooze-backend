@@ -1,3 +1,6 @@
+from datetime import datetime, timedelta
+
+import pytz
 from fastapi.responses import PlainTextResponse
 from loguru import logger
 
@@ -23,6 +26,7 @@ def post(record_input: WithdrawalRecord):
                 "proposal_id": record_input.proposal_id,
                 "use_description": record_input.use_description,
                 "transaction_hash": record_input.transaction_hash,
+                "output_time": datetime.now(pytz.utc) + timedelta(hours=8),
             }
         )
         SESSION.add(new_withdrawal_record)

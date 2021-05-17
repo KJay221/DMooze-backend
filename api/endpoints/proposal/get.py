@@ -105,9 +105,11 @@ def get_proposal_item(db_proposal: DBProposal):
             "money_input": [],
             "sponsor_addr": [],
             "transaction_hash_input": [],
+            "input_time": [],
             "money_output": [],
             "use_description": [],
             "transaction_hash_output": [],
+            "output_time": [],
         }
     )
     db_data_list = (
@@ -120,6 +122,7 @@ def get_proposal_item(db_proposal: DBProposal):
     db_data_list = (
         SESSION.query(MoneyList)
         .filter(MoneyList.proposal_id == db_proposal.proposal_id)
+        .order_by(MoneyList.input_time.desc())
         .all()
     )
     for data_item in db_data_list:
@@ -128,9 +131,11 @@ def get_proposal_item(db_proposal: DBProposal):
         proposal_item.transaction_hash_input.append(
             data_item.transaction_hash.replace(" ", "")
         )
+        proposal_item.input_time.append(data_item.input_time)
     db_data_list = (
         SESSION.query(WithdrawalList)
         .filter(WithdrawalList.proposal_id == db_proposal.proposal_id)
+        .order_by(WithdrawalList.output_time.desc())
         .all()
     )
     for data_item in db_data_list:
@@ -139,4 +144,5 @@ def get_proposal_item(db_proposal: DBProposal):
         proposal_item.transaction_hash_output.append(
             data_item.transaction_hash.replace(" ", "")
         )
+        proposal_item.output_time.append(data_item.output_time)
     return proposal_item

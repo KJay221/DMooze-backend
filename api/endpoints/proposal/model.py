@@ -42,6 +42,8 @@ class ProposalItem(BaseModel):
     money_input: List[int]
     sponsor_addr: List[str]
     transaction_hash_input: List[str]
+    input_time: List[datetime]
     money_output: List[int]
     use_description: List[str]
     transaction_hash_output: List[str]
+    output_time: List[datetime]

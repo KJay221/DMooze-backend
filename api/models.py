@@ -43,6 +43,7 @@ class MoneyList(BASE):
     money = Column(INT, nullable=False)
     sponsor_addr = Column(CHAR, nullable=False)
     transaction_hash = Column(CHAR, nullable=False)
+    input_time = Column(TIME, nullable=False)
     proposal_id = Column(INT, ForeignKey("proposal.proposal_id"), nullable=False)
 
 
@@ -54,6 +55,7 @@ class WithdrawalList(BASE):
     money = Column(INT, nullable=False)
     use_description = Column(CHAR, nullable=False)
     transaction_hash = Column(CHAR, nullable=False)
+    output_time = Column(TIME, nullable=False)
     proposal_id = Column(INT, ForeignKey("proposal.proposal_id"), nullable=False)
 
 
