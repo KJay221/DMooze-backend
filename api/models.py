@@ -75,6 +75,7 @@ def init_db():
                     "representative": proposal_object["representative"],
                     "email": proposal_object["email"],
                     "phone": proposal_object["phone"],
+                    "create_hash": proposal_object["create_hash"],
                 }
             )
             SESSION.merge(fake_proposal)
@@ -109,6 +110,7 @@ def init_db():
                         "transaction_hash": proposal_object["transaction_hash_input"][
                             j
                         ],
+                        "input_time": proposal_object["input_time"][j],
                     }
                 )
                 SESSION.merge(fake_moneylist)
@@ -132,6 +134,7 @@ def init_db():
                         "transaction_hash": proposal_object["transaction_hash_output"][
                             j
                         ],
+                        "output_time": proposal_object["input_time"][j],
                     }
                 )
                 SESSION.merge(fake_withdrawal_list)
