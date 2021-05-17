@@ -6,7 +6,7 @@ from pydantic import BaseModel
 
 class ProposalCreate(BaseModel):
     owner_addr: str = ""
-    target_price: int = 0
+    target_price: float = 0
     project_description: str = ""
     project_name: str = ""
     representative: str = ""
@@ -18,7 +18,7 @@ class ProposalCreate(BaseModel):
 class DBProposal(BaseModel):
     proposal_id: int
     owner_addr: str
-    target_price: int
+    target_price: float
     project_description: str
     start_time: datetime
     project_name: str
@@ -31,8 +31,8 @@ class DBProposal(BaseModel):
 class ProposalItem(BaseModel):
     proposal_id: int
     owner_addr: str
-    target_price: int
-    current_price: int
+    target_price: float
+    current_price: float
     project_description: str
     start_time: datetime
     left_time: str
@@ -42,11 +42,11 @@ class ProposalItem(BaseModel):
     phone: str
     create_hash: str
     img_url: List[str]
-    money_input: List[int]
+    money_input: List[float]
     sponsor_addr: List[str]
     transaction_hash_input: List[str]
     input_time: List[datetime]
-    money_output: List[int]
+    money_output: List[float]
     use_description: List[str]
     transaction_hash_output: List[str]
     output_time: List[datetime]

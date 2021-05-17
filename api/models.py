@@ -1,6 +1,6 @@
 import json
 
-from sqlalchemy import CHAR, INT, TIME, Column, ForeignKey
+from sqlalchemy import CHAR, FLOAT, INT, TIME, Column, ForeignKey
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 
@@ -16,7 +16,7 @@ class Proposal(BASE):
 
     proposal_id = Column(INT, primary_key=True)
     owner_addr = Column(CHAR, nullable=False)
-    target_price = Column(INT, nullable=False)
+    target_price = Column(FLOAT, nullable=False)
     project_description = Column(CHAR, nullable=False)
     start_time = Column(TIME, nullable=False)
     project_name = Column(CHAR, nullable=False)
@@ -41,7 +41,7 @@ class MoneyList(BASE):
     __tablename__ = "money_list"
 
     id = Column(INT, primary_key=True)
-    money = Column(INT, nullable=False)
+    money = Column(FLOAT, nullable=False)
     sponsor_addr = Column(CHAR, nullable=False)
     transaction_hash = Column(CHAR, nullable=False)
     input_time = Column(TIME, nullable=False)
@@ -53,7 +53,7 @@ class WithdrawalList(BASE):
     __tablename__ = "withdrawal_list"
 
     id = Column(INT, primary_key=True)
-    money = Column(INT, nullable=False)
+    money = Column(FLOAT, nullable=False)
     use_description = Column(CHAR, nullable=False)
     transaction_hash = Column(CHAR, nullable=False)
     output_time = Column(TIME, nullable=False)

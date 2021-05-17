@@ -87,7 +87,6 @@ def get_proposal_item(db_proposal: DBProposal):
     if left_time == 0:
         left_time = (endtime_time - now_time).seconds
         time_type = " 秒"
-
     proposal_item = ProposalItem(
         **{
             "proposal_id": db_proposal.proposal_id,
