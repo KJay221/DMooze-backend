@@ -159,7 +159,7 @@ def get_proposal_item(db_proposal: DBProposal):
         proposal_item.transaction_hash_input.append(
             data_item.transaction_hash.replace(" ", "")
         )
-        proposal_item.input_time.append(data_item.input_time)
+        proposal_item.input_time.append(count_time(data_item.input_time))
     db_data_list = (
         SESSION.query(WithdrawalList)
         .filter(WithdrawalList.proposal_id == db_proposal.proposal_id)
@@ -172,5 +172,21 @@ def get_proposal_item(db_proposal: DBProposal):
         proposal_item.transaction_hash_output.append(
             data_item.transaction_hash.replace(" ", "")
         )
-        proposal_item.output_time.append(data_item.output_time)
+        proposal_item.output_time.append(count_time(data_item.output_time))
     return proposal_item
+
+
+def count_time(start_time: datetime):
+    now = datetime.now(pytz.utc) + timedelta(hours=8)
+    now_time = datetime(now.year, now.month, now.day, now.hour, now.minute, now.second)
+    left_time = (now_time - start_time).days
+    time_type = "天前"
+    if left_time == 0:
+        left_time = (now_time - start_time).seconds // 3600
+        time_type = "小時前"
+    if left_time == 0:
+        left_time = (now_time - start_time).seconds // 60
+        time_type = "分鐘前"
+    if left_time == 0:
+        return "剛剛"
+    return str(left_time) + time_type
