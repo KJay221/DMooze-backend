@@ -19,7 +19,7 @@
         "transaction_hash_input": ["string","string","string","string"],
         "input_time" : ["2021-05-12T08:00:00","2021-05-12T08:00:00","2021-05-12T08:00:00","2021-05-12T08:00:00"],
         "money_output": [0.015850,0.015850,0.11092,0.007920],
-        "use_description": ["string","string","string","string"],
+        "use_description": ["場地租借","文書工具","宣傳單","音響租借"],
         "transaction_hash_output": ["string","string","string","string"],
         "output_time" : ["2021-05-12T08:00:00","2021-05-12T08:00:00","2021-05-12T08:00:00","2021-05-12T08:00:00"]
     },
@@ -43,7 +43,7 @@
         "transaction_hash_input": ["string","string","string"],
         "input_time" : ["2021-05-12T08:00:00","2021-05-12T08:00:00","2021-05-12T08:00:00"],
         "money_output": [0.14307,0.042160],
-        "use_description": ["string","string"],
+        "use_description": ["場地租借","音響租借"],
         "transaction_hash_output": ["string","string"],
         "output_time" : ["2021-05-12T08:00:00","2021-05-12T08:00:00"]
     },
@@ -69,7 +69,7 @@
         "transaction_hash_input": ["string","string","string","string"],
         "input_time" : ["2021-05-12T08:00:00","2021-05-12T08:00:00","2021-05-12T08:00:00","2021-05-12T08:00:00"],
         "money_output": [15.2681,0.15292,0.15292],
-        "use_description": ["string","string","string"],
+        "use_description": ["場地修建","人事費用","設備租借"],
         "transaction_hash_output": ["string","string","string"],
         "output_time" : ["2021-05-12T08:00:00","2021-05-12T08:00:00","2021-05-12T08:00:00"]
     },
@@ -93,7 +93,7 @@
         "transaction_hash_input": ["string","string","string"],
         "input_time" : ["2021-05-12T08:00:00","2021-05-12T08:00:00","2021-05-12T08:00:00"],
         "money_output": [0.014410,0.014410],
-        "use_description": ["string","string"],
+        "use_description": ["場地租借","文書工具"],
         "transaction_hash_output": ["string","string"],
         "output_time" : ["2021-05-12T08:00:00","2021-05-12T08:00:00"]
     },
