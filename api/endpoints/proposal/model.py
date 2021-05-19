@@ -8,6 +8,7 @@ class ProposalCreate(BaseModel):
     owner_addr: str = ""
     target_price: float = 0
     project_description: str = ""
+    start_time: datetime
     project_name: str = ""
     representative: str = ""
     email: str = ""
