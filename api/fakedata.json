@@ -1,11 +1,11 @@
 [
     {
         "owner_addr" : "0xDC25EF3F5E8699B8A158338A2ADA83795FBA2D69", 
-        "target_price" : 1000,
-        "project_description" : "這裡是資訊週>_<",
+        "target_price" : 0.20198,
+        "project_description" : "成大資訊週為成大資訊系一年一度的大活動，在活動當週會有密室逃脫、卡啦OK、之夜表演等等活動，在資訊週開始前也會有為時一週的傳情活動，而資訊週的金費主要會用於場地租借、音響設備及各類雜項支出，而贊助店家會獲得在資訊週粉絲專業打廣告的機會及資訊之夜開場影片的贊助廣告",
         "start_time" : "2021-04-10T08:00:00",
         "project_name" : "成大資訊週《奇怪的資勢增加了》",
-        "representative" : "112總召",
+        "representative" : "江冠廷",
         "email" : "csieweek2020@gmail.com",
         "phone" : "0923463782",
         "create_hash" : "0x4fb9c3509afe6e507527fc1580e7f66c58b7c26881cce0aa30566fbf8039bcd0",
@@ -14,14 +14,14 @@
             "1_2.jpg",
             "1_3.jpg"
         ],
-        "money_input": [200,200],
-        "sponsor_addr": ["string","string"],
-        "transaction_hash_input": ["string","string"],
-        "input_time" : ["2021-05-12T08:00:00","2021-05-12T08:00:00"],
-        "money_output": [100,100],
-        "use_description": ["string","string"],
-        "transaction_hash_output": ["string","string"],
-        "output_time" : ["2021-05-12T08:00:00","2021-05-12T08:00:00"]
+        "money_input": [0.049650,0.049650,0.066190,0.066190],
+        "sponsor_addr": ["string","string","string","string"],
+        "transaction_hash_input": ["string","string","string","string"],
+        "input_time" : ["2021-05-12T08:00:00","2021-05-12T08:00:00","2021-05-12T08:00:00","2021-05-12T08:00:00"],
+        "money_output": [0.015850,0.015850,0.11092,0.007920],
+        "use_description": ["string","string","string","string"],
+        "transaction_hash_output": ["string","string","string","string"],
+        "output_time" : ["2021-05-12T08:00:00","2021-05-12T08:00:00","2021-05-12T08:00:00","2021-05-12T08:00:00"]
     },
     {
         "owner_addr" : "0xDC25EF3F5E88A8338333093A2ADA83795FBA2D69",
