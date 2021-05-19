@@ -1,5 +1,9 @@
+import glob
+import os
+
 from fastapi import APIRouter, FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 
 from config import Config
 from endpoints import RESOURCES
@@ -11,6 +15,12 @@ APP = FastAPI(
     description=Config.APP_DESCRIPTION,
     openapi_url=Config.OPENAPI_URL,
 )
+
+FILES = glob.glob("./static/*")
+for img_file in FILES:
+    os.remove(img_file)
+APP.mount("/static", StaticFiles(directory="static"), name="static")
+
 API_ROUTER = APIRouter()
 
 

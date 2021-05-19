@@ -18,4 +18,4 @@ class Config:
 
     FAKE_DATA_INSERT = os.environ.get("FAKE_DATA_INSERT", "false")
 
-    IMGUR_CLIENT_ID = os.environ.get("IMGUR_CLIENT_ID", "NO_ID")
+    IMG_URL = os.environ.get("IMG_URL", "http://127.0.0.1:8000/static/")

@@ -1,13 +1,11 @@
-import os
 from typing import List
 
 import aiofiles
-import pyimgur
 from fastapi import File, UploadFile
 from fastapi.responses import PlainTextResponse
 from loguru import logger
-
 from config import Config
+
 from db import SESSION
 from models import ImageList, Proposal
 
@@ -20,16 +18,12 @@ async def post(
         db_proposal = (
             SESSION.query(Proposal).filter(Proposal.proposal_id == proposal_id).first()
         )
-        if Config.IMGUR_CLIENT_ID == "NO_ID":
-            return PlainTextResponse("Specify IMGUR_ID as environment variable.", 400)
         for image_object in enumerate(image_files):
-            image_path = "./image.jpg"
+            image_path = "./static/" + image_object[1].filename
             async with aiofiles.open(image_path, "wb") as image_file:
                 image_data = await image_object[1].read()
                 await image_file.write(image_data)
-                image = pyimgur.Imgur(Config.IMGUR_CLIENT_ID)
-                uploaded_image = image.upload_image(path=image_path)
-                os.remove(image_path)
+                image_path = Config().IMG_URL + image_object[1].filename
             last_id = SESSION.query(ImageList).order_by(ImageList.id.desc()).first()
             if not last_id:
                 last_id = 1
@@ -38,7 +32,7 @@ async def post(
             new_img_url = ImageList(
                 **{
                     "id": last_id,
-                    "image_url": uploaded_image.link,
+                    "image_url": image_path,
                     "proposal_id": db_proposal.proposal_id,
                 }
             )
@@ -48,4 +42,4 @@ async def post(
     except Exception as error:
         logger.error(error)
         SESSION.rollback()
-        return PlainTextResponse("Bad Request(check input image)", 400)
+        return PlainTextResponse("Bad Request(check input image or id is wrong)", 400)
