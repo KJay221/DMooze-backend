@@ -41,3 +41,4 @@ clean:
 	rm -f report.xml
 	rm -f coverage.xml
 	rm -f .coverage
+	rm -f ./api/static/*
