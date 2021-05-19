@@ -16,7 +16,7 @@ APP = FastAPI(
     openapi_url=Config.OPENAPI_URL,
 )
 
-FILES = glob.glob("./static/*")
+FILES = glob.glob("./static/img/*")
 for img_file in FILES:
     os.remove(img_file)
 APP.mount("/static", StaticFiles(directory="static"), name="static")

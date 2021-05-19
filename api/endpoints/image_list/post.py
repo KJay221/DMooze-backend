@@ -4,8 +4,8 @@ import aiofiles
 from fastapi import File, UploadFile
 from fastapi.responses import PlainTextResponse
 from loguru import logger
-from config import Config
 
+from config import Config
 from db import SESSION
 from models import ImageList, Proposal
 
@@ -19,16 +19,16 @@ async def post(
             SESSION.query(Proposal).filter(Proposal.proposal_id == proposal_id).first()
         )
         for image_object in enumerate(image_files):
-            image_path = "./static/" + image_object[1].filename
-            async with aiofiles.open(image_path, "wb") as image_file:
-                image_data = await image_object[1].read()
-                await image_file.write(image_data)
-                image_path = Config().IMG_URL + image_object[1].filename
             last_id = SESSION.query(ImageList).order_by(ImageList.id.desc()).first()
             if not last_id:
                 last_id = 1
             else:
                 last_id = last_id.id + 1
+            image_path = "./static/img/" + str(last_id) + image_object[1].filename
+            async with aiofiles.open(image_path, "wb") as image_file:
+                image_data = await image_object[1].read()
+                await image_file.write(image_data)
+                image_path = Config().IMG_URL + str(last_id) + image_object[1].filename
             new_img_url = ImageList(
                 **{
                     "id": last_id,
