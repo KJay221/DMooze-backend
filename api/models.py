@@ -89,7 +89,7 @@ def init_db():
                 fake_imagelist = ImageList(
                     **{
                         "id": last_id,
-                        "image_url": proposal_object["image_url"][j],
+                        "image_url": Config.IMG_URL + proposal_object["image_url"][j],
                         "proposal_id": i + 1,
                     }
                 )

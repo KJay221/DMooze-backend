@@ -10,9 +10,9 @@
         "phone" : "0923463782",
         "create_hash" : "0x4fb9c3509afe6e507527fc1580e7f66c58b7c26881cce0aa30566fbf8039bcd0",
         "image_url": [
-            "http://127.0.0.1:8000/static/fakedata_img/1_1.jpg",
-            "http://127.0.0.1:8000/static/fakedata_img/1_2.jpg",
-            "http://127.0.0.1:8000/static/fakedata_img/1_3.jpg"
+            "1_1.jpg",
+            "1_2.jpg",
+            "1_3.jpg"
         ],
         "money_input": [200,200],
         "sponsor_addr": ["string","string"],
@@ -34,9 +34,9 @@
         "phone" : "0922181818",
         "create_hash" : "0x4fb9c3509afe6e507527fc1580e7f66c58b7c26881cce0aa30566fbf8039bcd0",
         "image_url": [
-            "http://127.0.0.1:8000/static/fakedata_img/2_1.png",
-            "http://127.0.0.1:8000/static/fakedata_img/2_2.jpg",
-            "http://127.0.0.1:8000/static/fakedata_img/2_3.png"
+            "2_1.png",
+            "2_2.jpg",
+            "2_3.png"
         ],
         "money_input": [200,200],
         "sponsor_addr": ["string","string"],
@@ -58,11 +58,11 @@
         "phone" : "0911223344",
         "create_hash" : "0x4fb9c3509afe6e507527fc1580e7f66c58b7c26881cce0aa30566fbf8039bcd0",
         "image_url": [
-            "http://127.0.0.1:8000/static/fakedata_img/3_1.png",
-            "http://127.0.0.1:8000/static/fakedata_img/3_2.jpg",
-            "http://127.0.0.1:8000/static/fakedata_img/3_3.jpg",
-            "http://127.0.0.1:8000/static/fakedata_img/3_4.jpg",
-            "http://127.0.0.1:8000/static/fakedata_img/3_5.jpg"
+            "3_1.png",
+            "3_2.jpg",
+            "3_3.jpg",
+            "3_4.jpg",
+            "3_5.jpg"
 
         ],
         "money_input": [200,200],
@@ -85,9 +85,9 @@
         "phone" : "0933765432",
         "create_hash" : "0x4fb9c3509afe6e507527fc1580e7f66c58b7c26881cce0aa30566fbf8039bcd0",
         "image_url": [
-            "http://127.0.0.1:8000/static/fakedata_img/4_1.jpg",
-            "http://127.0.0.1:8000/static/fakedata_img/4_2.jpg",
-            "http://127.0.0.1:8000/static/fakedata_img/4_3.jpg"
+            "4_1.jpg",
+            "4_2.jpg",
+            "4_3.jpg"
         ],
         "money_input": [200,200],
         "sponsor_addr": ["string","string"],
@@ -109,9 +109,9 @@
         "phone" : "0922556674",
         "create_hash" : "0x4fb9c3509afe6e507527fc1580e7f66c58b7c26881cce0aa30566fbf8039bcd0",
         "image_url": [
-            "http://127.0.0.1:8000/static/fakedata_img/5_1.jpg",
-            "http://127.0.0.1:8000/static/fakedata_img/5_2.jpg",
-            "http://127.0.0.1:8000/static/fakedata_img/5_3.png"
+            "5_1.jpg",
+            "5_2.jpg",
+            "5_3.png"
         ],
         "money_input": [200,200],
         "sponsor_addr": ["string","string"],
@@ -133,10 +133,10 @@
         "phone" : "0922233674",
         "create_hash" : "0x4fb9c3509afe6e507527fc1580e7f66c58b7c26881cce0aa30566fbf8039bcd0",
         "image_url": [
-            "http://127.0.0.1:8000/static/fakedata_img/6_1.png",
-            "http://127.0.0.1:8000/static/fakedata_img/6_2.jpg",
-            "http://127.0.0.1:8000/static/fakedata_img/6_3.jpg",
-            "http://127.0.0.1:8000/static/fakedata_img/6_4.png"
+            "6_1.png",
+            "6_2.jpg",
+            "6_3.jpg",
+            "6_4.png"
         ],
         "money_input": [200,200],
         "sponsor_addr": ["string","string"],
@@ -158,8 +158,8 @@
         "phone" : "0912256674",
         "create_hash" : "0x4fb9c3509afe6e507527fc1580e7f66c58b7c26881cce0aa30566fbf8039bcd0",
         "image_url": [
-            "http://127.0.0.1:8000/static/fakedata_img/7_1.jpg",
-            "http://127.0.0.1:8000/static/fakedata_img/7_2.jpg"
+            "7_1.jpg",
+            "7_2.jpg"
         ],
         "money_input": [200,200],
         "sponsor_addr": ["string","string"],
@@ -181,9 +181,9 @@
         "phone" : "0912212674",
         "create_hash" : "0x4fb9c3509afe6e507527fc1580e7f66c58b7c26881cce0aa30566fbf8039bcd0",
         "image_url": [
-            "http://127.0.0.1:8000/static/fakedata_img/8_1.jpg",
-            "http://127.0.0.1:8000/static/fakedata_img/8_2.jpg",
-            "http://127.0.0.1:8000/static/fakedata_img/8_3.jpg"
+            "8_1.jpg",
+            "8_2.jpg",
+            "8_3.jpg"
         ],
         "money_input": [200,200],
         "sponsor_addr": ["string","string"],
@@ -205,8 +205,8 @@
         "phone" : "0941221262",
         "create_hash" : "0x4fb9c3509afe6e507527fc1580e7f66c58b7c26881cce0aa30566fbf8039bcd0",
         "image_url": [
-            "http://127.0.0.1:8000/static/fakedata_img/9_1.jpg",
-            "http://127.0.0.1:8000/static/fakedata_img/9_2.jpg"
+            "9_1.jpg",
+            "9_2.jpg"
         ],
         "money_input": [200,200],
         "sponsor_addr": ["string","string"],
@@ -228,8 +228,8 @@
         "phone" : "0941225555",
         "create_hash" : "0x4fb9c3509afe6e507527fc1580e7f66c58b7c26881cce0aa30566fbf8039bcd0",
         "image_url": [
-            "http://127.0.0.1:8000/static/fakedata_img/10_1.jpg",
-            "http://127.0.0.1:8000/static/fakedata_img/10_2.jpg"
+            "10_1.jpg",
+            "10_2.jpg"
         ],
         "money_input": [200,200],
         "sponsor_addr": ["string","string"],
