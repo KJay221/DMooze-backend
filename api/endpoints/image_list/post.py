@@ -28,7 +28,7 @@ async def post(
             async with aiofiles.open(image_path, "wb") as image_file:
                 image_data = await image_object[1].read()
                 await image_file.write(image_data)
-                image_path = Config().IMG_URL + str(last_id) + image_object[1].filename
+                image_path = Config().IMG_URL + "img/" + str(last_id) + image_object[1].filename
             new_img_url = ImageList(
                 **{
                     "id": last_id,
