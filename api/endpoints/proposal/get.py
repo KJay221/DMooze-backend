@@ -13,7 +13,7 @@ from .model import DBProposal, ProposalItem
 
 def get(
     usage: str,
-    proposal_id: Optional[int] = None,
+    proposal_id: Optional[str] = None,
     page: Optional[int] = None,
     owner_addr: Optional[str] = None,
     expired: Optional[bool] = None,
@@ -28,7 +28,7 @@ def get(
 
 
 def method_get_proposal(
-    proposal_id: int = None, page: int = None, expired: bool = None
+    proposal_id: str = None, page: int = None, expired: bool = None
 ):
     try:
         if not page:

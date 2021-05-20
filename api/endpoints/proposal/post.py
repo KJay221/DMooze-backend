@@ -1,3 +1,4 @@
+import uuid
 from datetime import datetime, timedelta
 
 import pytz
@@ -10,14 +11,9 @@ from models import Proposal
 
 def post():
     try:
-        last_id = SESSION.query(Proposal).order_by(Proposal.proposal_id.desc()).first()
-        if not last_id:
-            last_id = 1
-        else:
-            last_id = last_id.proposal_id + 1
         new_proposal = Proposal(
             **{
-                "proposal_id": last_id,
+                "proposal_id": str(uuid.uuid4()),
                 "owner_addr": "",
                 "target_price": 0,
                 "project_description": "",

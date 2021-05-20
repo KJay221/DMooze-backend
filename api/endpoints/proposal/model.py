@@ -17,7 +17,7 @@ class ProposalCreate(BaseModel):
 
 
 class DBProposal(BaseModel):
-    proposal_id: int
+    proposal_id: str
     owner_addr: str
     target_price: float
     project_description: str
@@ -30,7 +30,7 @@ class DBProposal(BaseModel):
 
 
 class ProposalItem(BaseModel):
-    proposal_id: int
+    proposal_id: str
     owner_addr: str
     target_price: float
     current_price: float

@@ -7,7 +7,7 @@ from models import Proposal
 from .model import ProposalCreate
 
 
-async def put(create_proposal_input: ProposalCreate, proposal_id: int):
+async def put(create_proposal_input: ProposalCreate, proposal_id: str):
     try:
         db_proposal = (
             SESSION.query(Proposal).filter(Proposal.proposal_id == proposal_id).first()

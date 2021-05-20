@@ -5,7 +5,7 @@ from db import SESSION
 from models import ImageList, MoneyList, Proposal, WithdrawalList
 
 
-async def delete(proposal_id: int):
+async def delete(proposal_id: str):
     try:
         for element in enumerate(
             SESSION.query(ImageList).filter(ImageList.proposal_id == proposal_id).all()

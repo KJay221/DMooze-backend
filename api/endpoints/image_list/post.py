@@ -1,3 +1,4 @@
+import uuid
 from typing import List
 
 import aiofiles
@@ -11,7 +12,7 @@ from models import ImageList, Proposal
 
 
 async def post(
-    proposal_id: int,
+    proposal_id: str,
     image_files: List[UploadFile] = File(...),
 ):
     try:
@@ -19,19 +20,17 @@ async def post(
             SESSION.query(Proposal).filter(Proposal.proposal_id == proposal_id).first()
         )
         for image_object in enumerate(image_files):
-            last_id = SESSION.query(ImageList).order_by(ImageList.id.desc()).first()
-            if not last_id:
-                last_id = 1
-            else:
-                last_id = last_id.id + 1
-            image_path = "./static/img/" + str(last_id) + image_object[1].filename
+            img_uuid = str(uuid.uuid4())
+            image_path = "./static/img/" + img_uuid + image_object[1].filename
             async with aiofiles.open(image_path, "wb") as image_file:
                 image_data = await image_object[1].read()
                 await image_file.write(image_data)
-                image_path = Config().IMG_URL + "img/" + str(last_id) + image_object[1].filename
+                image_path = (
+                    Config().IMG_URL + "img/" + img_uuid + image_object[1].filename
+                )
             new_img_url = ImageList(
                 **{
-                    "id": last_id,
+                    "id": img_uuid,
                     "image_url": image_path,
                     "proposal_id": db_proposal.proposal_id,
                 }

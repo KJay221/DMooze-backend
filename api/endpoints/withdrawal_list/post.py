@@ -1,3 +1,4 @@
+import uuid
 from datetime import datetime, timedelta
 
 import pytz
@@ -12,16 +13,9 @@ from .model import WithdrawalRecord
 
 def post(record_input: WithdrawalRecord):
     try:
-        last_id = (
-            SESSION.query(WithdrawalList).order_by(WithdrawalList.id.desc()).first()
-        )
-        if not last_id:
-            last_id = 1
-        else:
-            last_id = last_id.id + 1
         new_withdrawal_record = WithdrawalList(
             **{
-                "id": last_id,
+                "id": str(uuid.uuid4()),
                 "money": record_input.money,
                 "proposal_id": record_input.proposal_id,
                 "use_description": record_input.use_description,
