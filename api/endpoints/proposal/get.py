@@ -144,17 +144,17 @@ def get_proposal_item(db_proposal: DBProposal):
     proposal_item = ProposalItem(
         **{
             "proposal_id": db_proposal.proposal_id,
-            "owner_addr": db_proposal.owner_addr.replace(" ", ""),
+            "owner_addr": db_proposal.owner_addr.rstrip(),
             "target_price": db_proposal.target_price,
             "current_price": current_price,
-            "project_description": db_proposal.project_description.replace(" ", ""),
+            "project_description": db_proposal.project_description.rstrip(),
             "start_time": db_proposal.start_time,
             "left_time": str(left_time) + time_type,
-            "project_name": db_proposal.project_name.replace(" ", ""),
-            "representative": db_proposal.representative.replace(" ", ""),
-            "email": db_proposal.email.replace(" ", ""),
-            "phone": db_proposal.phone.replace(" ", ""),
-            "create_hash": db_proposal.create_hash.replace(" ", ""),
+            "project_name": db_proposal.project_name.rstrip(),
+            "representative": db_proposal.representative.rstrip(),
+            "email": db_proposal.email.rstrip(),
+            "phone": db_proposal.phone.rstrip(),
+            "create_hash": db_proposal.create_hash.rstrip(),
             "img_url": [],
             "money_input": [],
             "sponsor_addr": [],
@@ -172,7 +172,7 @@ def get_proposal_item(db_proposal: DBProposal):
         .all()
     )
     for data_item in db_data_list:
-        proposal_item.img_url.append(data_item.image_url.replace(" ", ""))
+        proposal_item.img_url.append(data_item.image_url.rstrip())
     db_data_list = (
         SESSION.query(MoneyList)
         .filter(MoneyList.proposal_id == db_proposal.proposal_id)
@@ -181,10 +181,8 @@ def get_proposal_item(db_proposal: DBProposal):
     )
     for data_item in db_data_list:
         proposal_item.money_input.append(data_item.money)
-        proposal_item.sponsor_addr.append(data_item.sponsor_addr.replace(" ", ""))
-        proposal_item.transaction_hash_input.append(
-            data_item.transaction_hash.replace(" ", "")
-        )
+        proposal_item.sponsor_addr.append(data_item.sponsor_addr.rstrip())
+        proposal_item.transaction_hash_input.append(data_item.transaction_hash.rstrip())
         proposal_item.input_time.append(count_time(data_item.input_time))
     db_data_list = (
         SESSION.query(WithdrawalList)
@@ -194,9 +192,9 @@ def get_proposal_item(db_proposal: DBProposal):
     )
     for data_item in db_data_list:
         proposal_item.money_output.append(data_item.money)
-        proposal_item.use_description.append(data_item.use_description.replace(" ", ""))
+        proposal_item.use_description.append(data_item.use_description.rstrip())
         proposal_item.transaction_hash_output.append(
-            data_item.transaction_hash.replace(" ", "")
+            data_item.transaction_hash.rstrip()
         )
         proposal_item.output_time.append(count_time(data_item.output_time))
     return proposal_item
